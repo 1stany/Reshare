@@ -15,16 +15,16 @@ public class Item {
     @Column(name = "condition_comment")
     private String conditionComment;
     @ManyToOne
-    @JoinColumn (name = "category_id")
+    @JoinColumn(name = "category_id")
     private Category category;
     @ManyToOne
-    @JoinColumn (name = "owner_id")
+    @JoinColumn(name = "owner_id")
     private AppUser owner;
-    @OneToOne (mappedBy = "requestedItem")
+    @OneToOne(mappedBy = "requestedItem")
     private ItemTrade requestedItemTrade;
-    @OneToOne (mappedBy = "exchangedItem")
+    @OneToOne(mappedBy = "exchangedItem")
     private ItemTrade exchangedItemTrade;
-    @OneToOne (mappedBy = "offeredItem")
+    @OneToOne(mappedBy = "offeredItem")
     private Offer offer;
 
 }
