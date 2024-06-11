@@ -52,12 +52,12 @@ public class JpaWishlistService implements WishlistService {
     }
 
     @Override
-    public List<ItemType> getAllItemTypeByCategory(int id) {
-        return null;
+    public List<ItemType> getAllItemTypeByCategory(int categoryId) {
+        return itemTypeRepo.findAllByCategoryId(categoryId);
     }
 
     @Override
-    public List<ItemType> getAllItemTypeByCity(int id) {
-        return null;
+    public List<ItemType> getAllItemTypeByCity(int cityId) {
+        return itemTypeRepo.findAllByCityId(cityId);
     }
 }
