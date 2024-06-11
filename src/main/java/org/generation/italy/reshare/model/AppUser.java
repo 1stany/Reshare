@@ -38,6 +38,49 @@ public class AppUser {
     public AppUser() {
     }
 
+    public AppUser(int id, String firstname, String lastname, String email, String phone, String gender, LocalDate birthdate, String description) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone = phone;
+        this.gender = gender;
+        this.birthdate = birthdate;
+        this.description = description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public LocalDate getBirthdate() {
+        return birthdate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public ItemTrade getRequestingItemTrade() {
         return requestingItemTrade;
     }
@@ -62,7 +105,4 @@ public class AppUser {
         return wishlist;
     }
 
-    public int getId() {
-        return id;
-    }
 }
