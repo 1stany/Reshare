@@ -48,7 +48,7 @@ public class JpaWishlistService implements WishlistService {
 
     @Override
     public List<ItemType> getAllItemType() {
-        return null;
+        return itemTypeRepo.findAll();
     }
 
     @Override

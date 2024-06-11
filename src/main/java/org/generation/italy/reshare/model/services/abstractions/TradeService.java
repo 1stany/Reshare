@@ -11,8 +11,7 @@ public interface TradeService {
     List<ItemTrade> getAllById(int id);
     List<ItemTrade> getAllByRequestDate(LocalDate requestDate);
     List<ItemTrade> getAllByExchangeDate(LocalDate exchangeDate); //servono due date????
-    List<ItemTrade> getAllByUser(int userId);
-    List<ItemTrade> getAllByItemType(String itemTypeName);
+    List<ItemTrade> getAllByItem(String itemName);
     AppUser getUserById(int id);
 
     void exchangeItem(int userId1, int userId2);

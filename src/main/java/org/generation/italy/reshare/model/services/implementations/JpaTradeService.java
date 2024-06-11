@@ -16,44 +16,41 @@ import java.util.Optional;
 public class JpaTradeService implements TradeService {
     private AppUserRepository appUserRepo;
     private ItemRepository itemRepo;
+    private ItemTradeRepository tradeRepo;
     private ItemTypeRepository itemTypeRepo;
     private OfferRepository offerRepo;
 
-    public JpaTradeService(AppUserRepository appUserRepo, ItemRepository itemRepo, ItemTypeRepository itemTypeRepo, OfferRepository offerRepo){
+    public JpaTradeService(AppUserRepository appUserRepo, ItemRepository itemRepo, ItemTradeRepository tradeRepo, ItemTypeRepository itemTypeRepo, OfferRepository offerRepo){
         this.appUserRepo = appUserRepo;
         this.itemRepo = itemRepo;
+        this.tradeRepo = tradeRepo;
         this.itemTypeRepo = itemTypeRepo;
         this.offerRepo = offerRepo;
     }
 
     @Override
     public List<ItemTrade> getAll() {
-        return null;
+        return tradeRepo.findAll();
     }
 
     @Override
     public List<ItemTrade> getAllById(int id) {
-        return null;
+        return tradeRepo.findAllById(id);
     }
 
     @Override
     public List<ItemTrade> getAllByRequestDate(LocalDate requestDate) {
-        return null;
+        return tradeRepo.findByRequestDate(requestDate);
     }
 
     @Override
     public List<ItemTrade> getAllByExchangeDate(LocalDate exchangeDate) {
-        return null;
+        return tradeRepo.findByExchangeDate(exchangeDate);
     }
 
     @Override
-    public List<ItemTrade> getAllByUser(int userId) {
-        return null;
-    }
-
-    @Override
-    public List<ItemTrade> getAllByItemType(String itemTypeName) {
-        return null;
+    public List<ItemTrade> getAllByItem(String itemName) {
+        return tradeRepo.findByItemName(itemName);
     }
 
     @Override
