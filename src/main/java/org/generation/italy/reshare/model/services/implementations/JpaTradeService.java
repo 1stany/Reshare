@@ -3,6 +3,7 @@ package org.generation.italy.reshare.model.services.implementations;
 import org.generation.italy.reshare.model.AppUser;
 import org.generation.italy.reshare.model.Item;
 import org.generation.italy.reshare.model.ItemTrade;
+import org.generation.italy.reshare.model.Offer;
 import org.generation.italy.reshare.model.repositories.abstractions.*;
 import org.generation.italy.reshare.model.services.abstractions.TradeService;
 import org.springframework.stereotype.Service;
@@ -88,14 +89,14 @@ public class JpaTradeService implements TradeService {
 
 
     @Override
-    public void exchangeOfferedItem(int userId1, int userId2) {
+    public void exchangeOfferedItem(int userId1) {
         AppUser user1 = getUserById(userId1);
-        AppUser user2 = getUserById(userId2);
-        Item u2Item = user2.getOffer().getOfferedItem();
-        Optional<Item> offeredItem = user1.getItems().stream().filter(i->i.getId()==u2Item.getId()).findFirst();
+        Item u1Item = user1.getOffer().getOfferedItem();
+        Optional<Item> offeredItem = user1.getItems().stream().filter(i->i.getId()==u1Item.getId()).findFirst();
         if(offeredItem.isPresent()){
             if(offeredItem.get().isActivetrade()){
                 offeredItem.get().setActivetrade(false);
+                user1.setOffer(new Offer());
             } else {
                 throw new IllegalStateException("L'oggetto non è attivo per lo scambio");
             }

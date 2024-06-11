@@ -58,8 +58,8 @@ public class JpaMarketService implements MarketService {
     }
 
     @Override
-    public List<Item> searchOfferedItems(boolean active) {
-        return itemRepo.findAllActive(active);
+    public List<Item> searchOfferedItems() {
+        return itemRepo.findAllOffered();
     }
 
     @Override

@@ -16,7 +16,9 @@ public interface TradeService {
     AppUser getUserById(int id);
 
     void exchangeItem(int userId1, int userId2);
-    void exchangeOfferedItem(int userId1, int userId2);
+    void exchangeOfferedItem(int userId1);
+
+
 
 
 }

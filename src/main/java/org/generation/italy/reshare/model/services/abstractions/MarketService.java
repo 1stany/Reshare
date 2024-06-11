@@ -12,6 +12,6 @@ List<Item> searchItemsByCondition(String condition);
 List<Item> searchActiveItems(boolean activetrade);
 List<Item> searchItemsByUser(int userId);
 List<Item> searchItemsByName(String itemTypeName);
-List<Item> searchOfferedItems(boolean active);
+List<Item> searchOfferedItems();
 Optional<AppUser> findUserById (int id);
 }

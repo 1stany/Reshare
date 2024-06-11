@@ -10,5 +10,7 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 
     List<Item> findAllByPart(String part);
 
-    List<Item> findAllActive(boolean active);
+    List<Item> findAllOffered();
+
+    List<Item> findAllActive(boolean activetrade);
 }

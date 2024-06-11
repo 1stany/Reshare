@@ -53,4 +53,12 @@ public class AppUser {
     public Offer getOffer() {
         return offer;
     }
+
+    public void setOffer(Offer offer) {
+        this.offer = offer;
+    }
+
+    public List<ItemType> getWishlist() {
+        return wishlist;
+    }
 }
