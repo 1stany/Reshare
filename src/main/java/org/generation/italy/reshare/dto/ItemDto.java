@@ -1,9 +1,8 @@
 package org.generation.italy.reshare.dto;
 
-import jakarta.persistence.Column;
 import org.generation.italy.reshare.model.Item;
 
-public class ItemDTO {
+public class ItemDto {
     private int id;
     private String name;
     private String description;
@@ -11,10 +10,10 @@ public class ItemDTO {
     private String condition;
     private String conditionComment;
 
-    public ItemDTO() {
+    public ItemDto() {
     }
 
-    public ItemDTO(Item item){
+    public ItemDto(Item item){
         this.id = item.getId();
         this.name = item.getName();
         this.condition = item.getCondition();
