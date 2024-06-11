@@ -18,4 +18,21 @@ public class City {
 
     public City() {
     }
+
+    public City(String name, String lockerpoint) {
+        this.name = name;
+        this.lockerpoint = lockerpoint;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLockerpoint() {
+        return lockerpoint;
+    }
 }
