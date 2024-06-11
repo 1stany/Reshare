@@ -27,12 +27,37 @@ public class Item {
     @OneToOne(mappedBy = "offeredItem")
     private Offer offer;
 
-    public Item() {
+    public Item(int id, String name, String condition, String description, String conditionComment, boolean activetrade) {
+        this.id = id;
+        this.name = name;
+        this.condition = condition;
+        this.description = description;
+        this.conditionComment = conditionComment;
+        this.activetrade = activetrade;
     }
 
     public int getId() {
         return id;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getConditionComment() {
+        return conditionComment;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
+
+    public String getCondition() {
+        return condition;
+    }
+
 
     public boolean isActivetrade() {
         return activetrade;
