@@ -30,7 +30,13 @@ public class ItemTrade {
     @OneToOne (mappedBy = "completedItemTrade")
     private Review review;
 
-    public ItemTrade() {
+    public ItemTrade() {}
+
+    public ItemTrade(int id, LocalDate requestDate, boolean accepted, LocalDate excangeDate) {
+        this.id = id;
+        this.requestDate = requestDate;
+        this.accepted = accepted;
+        this.excangeDate = excangeDate;
     }
 
     public Item getRequestedItem() {
@@ -39,5 +45,33 @@ public class ItemTrade {
 
     public Item getExchangedItem() {
         return exchangedItem;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public LocalDate getRequestedData() {
+        return requestDate;
+    }
+
+    public boolean isAccepted() {
+        return accepted;
+    }
+
+    public LocalDate getExcangeDate() {
+        return excangeDate;
+    }
+
+    public AppUser getRequestingUser() {
+        return requestingUser;
+    }
+
+    public AppUser getHomeUser() {
+        return homeUser;
+    }
+
+    public LocalDate getRequestDate() {
+        return requestDate;
     }
 }

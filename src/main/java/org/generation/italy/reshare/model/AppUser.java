@@ -61,4 +61,8 @@ public class AppUser {
     public List<ItemType> getWishlist() {
         return wishlist;
     }
+
+    public int getId() {
+        return id;
+    }
 }

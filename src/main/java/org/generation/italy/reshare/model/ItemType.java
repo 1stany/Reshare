@@ -23,10 +23,28 @@ public class ItemType {
     @OneToOne (mappedBy = "offeredItemType")
     private Offer offer;
 
-    public ItemType() {
+    public ItemType() {}
+
+    public ItemType(int id, String name, String description, LocalDate dateAdded) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.dateAdded = dateAdded;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public LocalDate getDateAdded() {
+        return dateAdded;
     }
 }
