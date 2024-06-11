@@ -15,17 +15,14 @@ import java.util.Optional;
 @Service
 public class JpaTradeService implements TradeService {
     private AppUserRepository appUserRepo;
-    private ItemRepository itemRepo;
-    private ItemTradeRepository tradeRepo;
-    private ItemTypeRepository itemTypeRepo;
-    private OfferRepository offerRepo;
 
-    public JpaTradeService(AppUserRepository appUserRepo, ItemRepository itemRepo, ItemTradeRepository tradeRepo, ItemTypeRepository itemTypeRepo, OfferRepository offerRepo){
+    private ItemTradeRepository tradeRepo;
+
+
+
+    public JpaTradeService(AppUserRepository appUserRepo, ItemTradeRepository tradeRepo){
         this.appUserRepo = appUserRepo;
-        this.itemRepo = itemRepo;
         this.tradeRepo = tradeRepo;
-        this.itemTypeRepo = itemTypeRepo;
-        this.offerRepo = offerRepo;
     }
 
     @Override

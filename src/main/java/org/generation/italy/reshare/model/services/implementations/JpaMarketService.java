@@ -11,19 +11,11 @@ import java.util.Optional;
 @Service
 public class JpaMarketService implements MarketService {
     private AppUserRepository appUserRepo;
-    private CategoryRepository categoryRepo;
-    private CityRepository cityRepo;
     private ItemRepository itemRepo;
-    private ItemTypeRepository itemTypeRepo;
-    private OfferRepository offerRepo;
 
-    public JpaMarketService(AppUserRepository appUserRepo, CategoryRepository categoryRepo, CityRepository cityRepo, ItemRepository itemRepo, ItemTypeRepository itemTypeRepo, OfferRepository offerRepo){
+    public JpaMarketService(AppUserRepository appUserRepo, ItemRepository itemRepo){
         this.appUserRepo = appUserRepo;
-        this.categoryRepo = categoryRepo;
-        this.cityRepo = cityRepo;
         this.itemRepo = itemRepo;
-        this.itemTypeRepo = itemTypeRepo;
-        this.offerRepo = offerRepo;
     }
 
 
