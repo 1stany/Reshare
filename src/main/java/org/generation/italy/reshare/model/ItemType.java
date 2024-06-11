@@ -25,4 +25,8 @@ public class ItemType {
 
     public ItemType() {
     }
+
+    public int getId() {
+        return id;
+    }
 }
