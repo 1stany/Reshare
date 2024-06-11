@@ -17,16 +17,27 @@ public class ItemTrade {
     private LocalDate excangeDate;
     @OneToOne
     @JoinColumn (name = "requested_object_id")
-    private Item requestedItem;
+    private Item requestedItem;         //oggetto che lo user vuole ricevere
     @OneToOne
     @JoinColumn (name = "requesting_user_id")
     private AppUser requestingUser;
     @OneToOne
     @JoinColumn (name = "exchanged_object_id")
-    private Item exchangedItem;
+    private Item exchangedItem;         //oggetto dello user che si dedisera scambiare
     @OneToOne
     @JoinColumn (name = "home_user_id")
     private AppUser homeUser;
     @OneToOne (mappedBy = "completedItemTrade")
     private Review review;
+
+    public ItemTrade() {
+    }
+
+    public Item getRequestedItem() {
+        return requestedItem;
+    }
+
+    public Item getExchangedItem() {
+        return exchangedItem;
+    }
 }

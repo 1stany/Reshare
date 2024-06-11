@@ -18,4 +18,12 @@ public class Category {
     private List<Item> categoryItem = new ArrayList<>();
     @JoinColumn (name = "category")
     private List<ItemType> categoryItemType = new ArrayList<>();
+
+    public Category() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
 }

@@ -22,4 +22,7 @@ public class ItemType {
     private AppUser wishingUser;
     @OneToOne (mappedBy = "offeredItemType")
     private Offer offer;
+
+    public ItemType() {
+    }
 }

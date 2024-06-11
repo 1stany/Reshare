@@ -27,4 +27,18 @@ public class Item {
     @OneToOne(mappedBy = "offeredItem")
     private Offer offer;
 
+    public Item() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public boolean isActivetrade() {
+        return activetrade;
+    }
+
+    public void setActivetrade(boolean activetrade) {
+        this.activetrade = activetrade;
+    }
 }

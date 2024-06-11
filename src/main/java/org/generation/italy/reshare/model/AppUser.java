@@ -25,13 +25,32 @@ public class AppUser {
     @OneToMany (mappedBy = "owner")
     private List<Item> items = new ArrayList<>();
     @OneToOne (mappedBy = "requestingUser")
-    private ItemTrade requestingItemTrade;
+    private ItemTrade requestingItemTrade;  //oggetto che si vuole riceveree
     @OneToOne (mappedBy = "homeUser")
-    private ItemTrade homeItemTrade;
+    private ItemTrade homeItemTrade;        //oggetto dello user che si vuole scambiare
     @OneToMany (mappedBy = "wishingUser")
     private List<ItemType> wishlist = new ArrayList<>();
     @OneToOne (mappedBy = "offeringUser")
     private Offer offer;
-    @OneToMany (mappedBy = "author")
+    @OneToMany (mappedBy = "author", cascade = {CascadeType.REMOVE})
     private List<ItemType> reviews = new ArrayList<>();
+
+    public AppUser() {
+    }
+
+    public ItemTrade getRequestingItemTrade() {
+        return requestingItemTrade;
+    }
+
+    public ItemTrade getHomeItemTrade() {
+        return homeItemTrade;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public Offer getOffer() {
+        return offer;
+    }
 }

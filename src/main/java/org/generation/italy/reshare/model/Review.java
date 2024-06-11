@@ -17,4 +17,12 @@ public class Review {
     @ManyToOne
     @JoinColumn (name = "app_user_id")
     private AppUser author;
+
+    public Review() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
 }

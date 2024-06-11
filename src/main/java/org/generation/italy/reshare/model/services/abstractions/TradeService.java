@@ -1,17 +1,22 @@
 package org.generation.italy.reshare.model.services.abstractions;
 
 import org.generation.italy.reshare.model.AppUser;
-import org.generation.italy.reshare.model.Category;
-import org.generation.italy.reshare.model.City;
-import org.generation.italy.reshare.model.Item;
+import org.generation.italy.reshare.model.ItemTrade;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface TradeService {
-List<Item> searchItems(Category category);
-List<Item> searchItems(City city);
-List<Item> searchItems(String itemName);
-List<Item> searchItems(boolean activetrade);
-List<Item> searchItems(AppUser owner);
+    List<ItemTrade> getAll();
+    List<ItemTrade> getAllById(int id);
+    List<ItemTrade> getAllByRequestDate(LocalDate requestDate);
+    List<ItemTrade> getAllByExchangeDate(LocalDate exchangeDate); //servono due date????
+    List<ItemTrade> getAllByUser(int userId);
+    List<ItemTrade> getAllByItemType(String itemTypeName);
+    AppUser getUserById(int id);
+
+    void exchangeItem(int userId1, int userId2);
+    void exchangeOfferedItem(int userId1, int userId2);
+
 
 }

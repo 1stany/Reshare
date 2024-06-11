@@ -15,4 +15,7 @@ public class City {
     private String lockerpoint;
     @OneToMany(mappedBy = "city", fetch = FetchType.EAGER)
     private List<AppUser> cityUsers = new ArrayList<>();
+
+    public City() {
+    }
 }
