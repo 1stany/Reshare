@@ -21,8 +21,26 @@ public class Review {
     public Review() {
     }
 
+    public Review(int id, String title, String content, int rating) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.rating = rating;
+    }
+
     public int getId() {
         return id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public int getRating() {
+        return rating;
+    }
 }

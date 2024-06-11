@@ -23,7 +23,25 @@ public class Offer {
     public Offer() {
     }
 
+    public Offer(int id, String description, boolean active) {
+        this.id = id;
+        this.description = description;
+        this.active = active;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public Item getOfferedItem() {
         return offeredItem;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public boolean getActive() {
+        return active;
     }
 }
