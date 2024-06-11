@@ -14,7 +14,7 @@ public class ItemTrade {
     private LocalDate requestDate;
     private boolean accepted;
     @Column (name = "exchange_date")
-    private LocalDate excangeDate;
+    private LocalDate exchangeDate;
     @OneToOne
     @JoinColumn (name = "requested_object_id")
     private Item requestedItem;         //oggetto che lo user vuole ricevere
@@ -23,7 +23,7 @@ public class ItemTrade {
     private AppUser requestingUser;
     @OneToOne
     @JoinColumn (name = "exchanged_object_id")
-    private Item exchangedItem;         //oggetto dello user che si dedisera scambiare
+    private Item exchangedItem;         //oggetto dello user che si desidera scambiare
     @OneToOne
     @JoinColumn (name = "home_user_id")
     private AppUser homeUser;
@@ -32,11 +32,11 @@ public class ItemTrade {
 
     public ItemTrade() {}
 
-    public ItemTrade(int id, LocalDate requestDate, boolean accepted, LocalDate excangeDate) {
+    public ItemTrade(int id, LocalDate requestDate, boolean accepted, LocalDate exchangeDate) {
         this.id = id;
         this.requestDate = requestDate;
         this.accepted = accepted;
-        this.excangeDate = excangeDate;
+        this.exchangeDate = exchangeDate;
     }
 
     public Item getRequestedItem() {
@@ -59,8 +59,8 @@ public class ItemTrade {
         return accepted;
     }
 
-    public LocalDate getExcangeDate() {
-        return excangeDate;
+    public LocalDate getExchangeDate() {
+        return exchangeDate;
     }
 
     public AppUser getRequestingUser() {

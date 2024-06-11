@@ -9,13 +9,13 @@ public class ItemTradeDto {
     private int id;
     private String requestDate;
     private boolean accepted;
-    private String excangeDate;
+    private String exchangeDate;
 
     public ItemTradeDto(ItemTrade it) {
         this.id = it.getId();
         this.requestDate = it.getRequestedData().format(DateTimeFormatter.ofPattern("d-MMM-uuuu"));
         this.accepted = it.isAccepted();
-        this.excangeDate = it.getExcangeDate().format(DateTimeFormatter.ofPattern("d-MMM-uuuu"));
+        this.exchangeDate = it.getExchangeDate().format(DateTimeFormatter.ofPattern("d-MMM-uuuu"));
     }
 
     public ItemTradeDto() {}
@@ -32,11 +32,11 @@ public class ItemTradeDto {
         return accepted;
     }
 
-    public String getExcangeDate() {
-        return excangeDate;
+    public String getExchangeDate() {
+        return exchangeDate;
     }
 
     public ItemTrade toItemTrade() {
-        return new ItemTrade(this.id, LocalDate.parse(this.requestDate, DateTimeFormatter.ofPattern("uuuu-MM-dd") ), this.accepted, LocalDate.parse(this.excangeDate, DateTimeFormatter.ofPattern("uuuu-MM-dd")));
+        return new ItemTrade(this.id, LocalDate.parse(this.requestDate, DateTimeFormatter.ofPattern("uuuu-MM-dd") ), this.accepted, LocalDate.parse(this.exchangeDate, DateTimeFormatter.ofPattern("uuuu-MM-dd")));
     }
 }
