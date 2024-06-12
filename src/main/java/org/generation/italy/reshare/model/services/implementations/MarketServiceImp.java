@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class JpaMarketService implements MarketService {
+public class MarketServiceImp implements MarketService {
     private AppUserRepository appUserRepo;
     private ItemRepository itemRepo;
 
-    public JpaMarketService(AppUserRepository appUserRepo, ItemRepository itemRepo){
+    public MarketServiceImp(AppUserRepository appUserRepo, ItemRepository itemRepo){
         this.appUserRepo = appUserRepo;
         this.itemRepo = itemRepo;
     }

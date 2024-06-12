@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class JpaWishlistService implements WishlistService {
+public class WishlistServiceImp implements WishlistService {
     private AppUserRepository appUserRepo;
     private ItemTypeRepository itemTypeRepo;
 
 
-    public JpaWishlistService(AppUserRepository appUserRepo, ItemTypeRepository itemTypeRepo){
+    public WishlistServiceImp(AppUserRepository appUserRepo, ItemTypeRepository itemTypeRepo){
         this.appUserRepo = appUserRepo;
         this.itemTypeRepo = itemTypeRepo;
     }
