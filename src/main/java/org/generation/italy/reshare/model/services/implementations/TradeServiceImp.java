@@ -13,14 +13,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class JpaTradeServiceImp implements TradeService {
+public class TradeServiceImp implements TradeService {
     private AppUserRepository appUserRepo;
 
     private ItemTradeRepository tradeRepo;
 
 
 
-    public JpaTradeServiceImp(AppUserRepository appUserRepo, ItemTradeRepository tradeRepo){
+    public TradeServiceImp(AppUserRepository appUserRepo, ItemTradeRepository tradeRepo){
         this.appUserRepo = appUserRepo;
         this.tradeRepo = tradeRepo;
     }
