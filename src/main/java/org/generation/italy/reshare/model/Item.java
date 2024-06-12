@@ -1,6 +1,7 @@
 package org.generation.italy.reshare.model;
 
 import jakarta.persistence.*;
+import org.generation.italy.reshare.dto.ItemDto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +31,7 @@ public class Item {
 //    private ItemTrade exchangedItemTrade;
 //    @OneToOne(mappedBy = "offeredItem")
 //    private Offer offer;
-    public static final List<String> CONDITIONS = Arrays.asList("come nuovo", "ottimo", "buono", "accettabile");
+    public static final List<String> CONDITIONS = Arrays.asList("comenuovo", "ottimo", "buono", "accettabile");
 
     public Item() {
     }
@@ -73,5 +74,9 @@ public class Item {
 
     public void setActivetrade(boolean activetrade) {
         this.activetrade = activetrade;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 }

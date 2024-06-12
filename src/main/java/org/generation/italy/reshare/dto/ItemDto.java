@@ -9,6 +9,7 @@ public class ItemDto {
     private boolean activetrade;
     private String condition;
     private String conditionComment;
+    private String categoryName;
 
     public ItemDto() {
     }
@@ -20,7 +21,7 @@ public class ItemDto {
         this.description = item.getDescription();
         this.conditionComment = item.getConditionComment();
         this.activetrade = item.isActivetrade() ; //Chiedere a Riccardo se tenere boolean o convertirla in stringa
-
+        this.categoryName = item.getCategory().getName();
     }
 
     public void setId(long id) {
@@ -73,5 +74,13 @@ public class ItemDto {
 
     public String getConditionComment() {
         return conditionComment;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

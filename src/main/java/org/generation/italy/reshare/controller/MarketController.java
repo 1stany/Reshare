@@ -1,14 +1,13 @@
 package org.generation.italy.reshare.controller;
 
 import org.generation.italy.reshare.dto.ItemDto;
+import org.generation.italy.reshare.exceptions.EntityNotFoundException;
 import org.generation.italy.reshare.model.Item;
 import org.generation.italy.reshare.model.services.abstractions.MarketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +26,25 @@ public class MarketController {
                                                       @RequestParam(required = false) Boolean activetrade){
         List<Item> result = marketService.searchItems(condition, activetrade);
         return ResponseEntity.ok().body(result.stream().map(ItemDto::new).toList());
+    }
+
+    @GetMapping ("/user/{id}/item")
+    public ResponseEntity<?> getItemsByUser (@PathVariable int id) {
+        try {
+            List<Item> result = marketService.searchItemsByUser(id);
+            return ResponseEntity.ok().body(result.stream().map(ItemDto::new).toList());
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @GetMapping ("/category/{id}/item")
+    public ResponseEntity<?> getItemByCategory (@PathVariable int id){
+        try{
+            List<Item> result = marketService.searchItemsByCategory(id);
+            return ResponseEntity.ok().body(result.stream().map(ItemDto::new).toList());
+        }catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 }

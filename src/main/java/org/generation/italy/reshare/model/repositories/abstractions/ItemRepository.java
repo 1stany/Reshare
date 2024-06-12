@@ -11,4 +11,7 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
     List<Item> findByCondition(String condition);
     List<Item> findByConditionAndActivetrade(String condition, boolean activetrade);
 
+    List<Item> findByOwnerId(int userId);
+
+    List<Item> findByCategoryId(int categoryId);
 }

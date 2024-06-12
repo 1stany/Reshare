@@ -1,5 +1,6 @@
 package org.generation.italy.reshare.model.services.implementations;
 
+import org.generation.italy.reshare.exceptions.EntityNotFoundException;
 import org.generation.italy.reshare.model.*;
 import org.generation.italy.reshare.model.repositories.abstractions.*;
 import org.generation.italy.reshare.model.services.abstractions.MarketService;
@@ -12,16 +13,22 @@ import java.util.Optional;
 public class MarketServiceImp implements MarketService {
     private AppUserRepository appUserRepo;
     private ItemRepository itemRepo;
+    private CategoryRepository categoryRepo;
 
-    public MarketServiceImp(AppUserRepository appUserRepo, ItemRepository itemRepo){
+    public MarketServiceImp(AppUserRepository appUserRepo, ItemRepository itemRepo, CategoryRepository categoryRepo){
         this.appUserRepo = appUserRepo;
         this.itemRepo = itemRepo;
+        this.categoryRepo = categoryRepo;
     }
 
 
     @Override
-    public List<Item> searchItemsByCategory(int categoryId) {
-        return null;
+    public List<Item> searchItemsByCategory(int categoryId) throws EntityNotFoundException {
+        Optional<Category> oC = categoryRepo.findById(categoryId);
+        if(oC.isEmpty()){
+            throw new EntityNotFoundException(oC.getClass(), categoryId);
+        }
+        return itemRepo.findByCategoryId(categoryId);
     }
 
     @Override
@@ -46,8 +53,12 @@ public class MarketServiceImp implements MarketService {
     }
 
     @Override
-    public List<Item> searchItemsByUser(int userId) {
-        return null;
+    public List<Item> searchItemsByUser(int userId) throws EntityNotFoundException{
+        Optional<AppUser> oU = appUserRepo.findById(userId);
+        if(oU.isEmpty()){
+            throw new EntityNotFoundException(AppUser.class, userId);
+        }
+        return itemRepo.findByOwnerId(userId);
     }
 
     @Override
