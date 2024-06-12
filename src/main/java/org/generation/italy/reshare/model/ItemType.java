@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class ItemType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String name;
     private String description;
     @Column (name = "date_added")
@@ -25,14 +25,14 @@ public class ItemType {
 
     public ItemType() {}
 
-    public ItemType(int id, String name, String description, LocalDate dateAdded) {
+    public ItemType(long id, String name, String description, LocalDate dateAdded) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.dateAdded = dateAdded;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

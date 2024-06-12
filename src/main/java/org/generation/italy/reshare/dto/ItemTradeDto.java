@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class ItemTradeDto {
-    private int id;
+    private long id;
     private String requestDate;
     private boolean accepted;
     private String exchangeDate;
@@ -20,7 +20,7 @@ public class ItemTradeDto {
 
     public ItemTradeDto() {}
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

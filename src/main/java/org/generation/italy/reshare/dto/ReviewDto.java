@@ -3,7 +3,7 @@ package org.generation.italy.reshare.dto;
 import org.generation.italy.reshare.model.Review;
 
 public class ReviewDto {
-    private int id;
+    private long id;
     private String title;
     private String content;
     private int rating;

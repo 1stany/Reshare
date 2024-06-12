@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class ItemTrade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @Column (name = "request_date")
     private LocalDate requestDate;
     private boolean accepted;
@@ -32,7 +32,7 @@ public class ItemTrade {
 
     public ItemTrade() {}
 
-    public ItemTrade(int id, LocalDate requestDate, boolean accepted, LocalDate exchangeDate) {
+    public ItemTrade(long id, LocalDate requestDate, boolean accepted, LocalDate exchangeDate) {
         this.id = id;
         this.requestDate = requestDate;
         this.accepted = accepted;
@@ -47,7 +47,7 @@ public class ItemTrade {
         return exchangedItem;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

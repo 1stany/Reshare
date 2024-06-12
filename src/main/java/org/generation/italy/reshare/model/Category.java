@@ -10,25 +10,24 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String name;
     private String description;
-    @OneToMany
-    @JoinColumn (name = "category")
+    @OneToMany (mappedBy = "category")
     private List<Item> categoryItem = new ArrayList<>();
-    @JoinColumn (name = "category")
+    @OneToMany (mappedBy = "category")
     private List<ItemType> categoryItemType = new ArrayList<>();
 
     public Category() {
     }
 
-    public Category(int id, String name, String description) {
+    public Category(long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

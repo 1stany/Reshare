@@ -10,10 +10,10 @@ import java.util.List;
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String name;
     private String lockerpoint;
-    @OneToMany(mappedBy = "city", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "city")
     private List<AppUser> cityUsers = new ArrayList<>();
 
     public City() {
@@ -24,7 +24,7 @@ public class City {
         this.lockerpoint = lockerpoint;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

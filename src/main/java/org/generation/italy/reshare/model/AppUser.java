@@ -11,7 +11,7 @@ import java.util.List;
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String firstname;
     private String lastname;
     private String email;
@@ -33,12 +33,12 @@ public class AppUser {
     @OneToOne (mappedBy = "offeringUser")
     private Offer offer;
     @OneToMany (mappedBy = "author", cascade = {CascadeType.REMOVE})
-    private List<ItemType> reviews = new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
 
     public AppUser() {
     }
 
-    public AppUser(int id, String firstname, String lastname, String email, String phone, String gender, LocalDate birthdate, String description) {
+    public AppUser(long id, String firstname, String lastname, String email, String phone, String gender, LocalDate birthdate, String description) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -49,7 +49,7 @@ public class AppUser {
         this.description = description;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
