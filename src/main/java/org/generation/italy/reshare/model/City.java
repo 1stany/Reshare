@@ -13,8 +13,8 @@ public class City {
     private long id;
     private String name;
     private String lockerpoint;
-    @OneToMany(mappedBy = "city")
-    private List<AppUser> cityUsers = new ArrayList<>();
+    //@OneToMany(mappedBy = "city")
+    //private List<AppUser> cityUsers = new ArrayList<>();
 
     public City() {
     }

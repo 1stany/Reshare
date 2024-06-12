@@ -3,6 +3,8 @@ package org.generation.italy.reshare.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "object_trade")
@@ -18,17 +20,17 @@ public class ItemTrade {
     @OneToOne
     @JoinColumn (name = "requested_object_id")
     private Item requestedItem;         //oggetto che lo user vuole ricevere
-    @OneToOne
+    @ManyToOne
     @JoinColumn (name = "requesting_user_id")
     private AppUser requestingUser;
     @OneToOne
     @JoinColumn (name = "exchanged_object_id")
     private Item exchangedItem;         //oggetto dello user che si desidera scambiare
-    @OneToOne
+    @ManyToOne
     @JoinColumn (name = "home_user_id")
     private AppUser homeUser;
-    @OneToOne (mappedBy = "completedItemTrade")
-    private Review review;
+    @OneToMany (mappedBy = "completedItemTrade")
+    private List<Review> reviews = new ArrayList<>();
 
     public ItemTrade() {}
 

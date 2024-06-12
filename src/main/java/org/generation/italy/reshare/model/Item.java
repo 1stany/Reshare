@@ -24,12 +24,12 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private AppUser owner;
-    @OneToOne(mappedBy = "requestedItem")
-    private ItemTrade requestedItemTrade;
-    @OneToOne(mappedBy = "exchangedItem", fetch = FetchType.LAZY)
-    private ItemTrade exchangedItemTrade;
-    @OneToOne(mappedBy = "offeredItem")
-    private Offer offer;
+//    @OneToOne(mappedBy = "requestedItem")
+//    private ItemTrade requestedItemTrade;
+//    @OneToOne(mappedBy = "exchangedItem", fetch = FetchType.LAZY)
+//    private ItemTrade exchangedItemTrade;
+//    @OneToOne(mappedBy = "offeredItem")
+//    private Offer offer;
     public static final List<String> CONDITIONS = Arrays.asList("come nuovo", "ottimo", "buono", "accettabile");
 
     public Item() {

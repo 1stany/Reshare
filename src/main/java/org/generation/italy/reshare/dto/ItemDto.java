@@ -23,9 +23,55 @@ public class ItemDto {
 
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setActivetrade(boolean activetrade) {
+        this.activetrade = activetrade;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public void setConditionComment(String conditionComment) {
+        this.conditionComment = conditionComment;
+    }
+
     public Item toItem(){
         return new Item(this.id, this.name, this.condition, this.description, this.conditionComment, this.activetrade);
     }
 
+    public long getId() {
+        return id;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean isActivetrade() {
+        return activetrade;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public String getConditionComment() {
+        return conditionComment;
+    }
 }

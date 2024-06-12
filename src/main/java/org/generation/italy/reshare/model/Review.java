@@ -11,7 +11,7 @@ public class Review {
     private String title;
     private String content;
     private int rating;
-    @OneToOne
+    @ManyToOne
     @JoinColumn (name = "object_trade_id")
     private ItemTrade completedItemTrade;
     @ManyToOne

@@ -13,10 +13,10 @@ public class Offer {
     @OneToOne
     @JoinColumn (name = "offered_object_id")
     private Item offeredItem;
-    @OneToOne
-    @JoinColumn (name = "object_type_id")
-    private ItemType offeredItemType;
-    @OneToOne
+//    @OneToOne
+//    @JoinColumn (name = "object_type_id")
+//    private ItemType offeredItemType;
+    @ManyToOne
     @JoinColumn (name = "user_id")
     private AppUser offeringUser;
 

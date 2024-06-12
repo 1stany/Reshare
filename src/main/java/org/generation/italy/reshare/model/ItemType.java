@@ -20,8 +20,7 @@ public class ItemType {
     @ManyToOne
     @JoinColumn (name = "wishing_user_id")
     private AppUser wishingUser;
-    @OneToOne (mappedBy = "offeredItemType")
-    private Offer offer;
+
 
     public ItemType() {}
 

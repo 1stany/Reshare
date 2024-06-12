@@ -22,18 +22,18 @@ public class AppUser {
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
-    @OneToMany (mappedBy = "owner")
-    private List<Item> items = new ArrayList<>();
-    @OneToOne (mappedBy = "requestingUser")
-    private ItemTrade requestingItemTrade;  //oggetto che si vuole riceveree
-    @OneToOne (mappedBy = "homeUser")
-    private ItemTrade homeItemTrade;        //oggetto dello user che si vuole scambiare
+    //@OneToMany (mappedBy = "owner")
+    //private List<Item> items = new ArrayList<>();
+    //@OneToOne (mappedBy = "requestingUser")
+    //private ItemTrade requestingItemTrade;  //oggetto che si vuole riceveree
+    //@OneToOne (mappedBy = "homeUser")
+    //private ItemTrade homeItemTrade;        //oggetto dello user che si vuole scambiare
     @OneToMany (mappedBy = "wishingUser")
     private List<ItemType> wishlist = new ArrayList<>();
-    @OneToOne (mappedBy = "offeringUser")
-    private Offer offer;
-    @OneToMany (mappedBy = "author", cascade = {CascadeType.REMOVE})
-    private List<Review> reviews = new ArrayList<>();
+    //@OneToOne (mappedBy = "offeringUser")
+    //private Offer offer;
+    //@OneToMany (mappedBy = "author", cascade = {CascadeType.REMOVE})
+    //private List<Review> reviews = new ArrayList<>();
 
     public AppUser() {
     }
@@ -79,26 +79,6 @@ public class AppUser {
 
     public String getDescription() {
         return description;
-    }
-
-    public ItemTrade getRequestingItemTrade() {
-        return requestingItemTrade;
-    }
-
-    public ItemTrade getHomeItemTrade() {
-        return homeItemTrade;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public Offer getOffer() {
-        return offer;
-    }
-
-    public void setOffer(Offer offer) {
-        this.offer = offer;
     }
 
     public List<ItemType> getWishlist() {
