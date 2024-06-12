@@ -2,12 +2,16 @@ package org.generation.italy.reshare.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Entity
 @Table (name = "object")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String name;
     private String description;
     private boolean activetrade;
@@ -22,12 +26,16 @@ public class Item {
     private AppUser owner;
     @OneToOne(mappedBy = "requestedItem")
     private ItemTrade requestedItemTrade;
-    @OneToOne(mappedBy = "exchangedItem")
+    @OneToOne(mappedBy = "exchangedItem", fetch = FetchType.LAZY)
     private ItemTrade exchangedItemTrade;
     @OneToOne(mappedBy = "offeredItem")
     private Offer offer;
+    public static final List<String> CONDITIONS = Arrays.asList("come nuovo", "ottimo", "buono", "accettabile");
 
-    public Item(int id, String name, String condition, String description, String conditionComment, boolean activetrade) {
+    public Item() {
+    }
+
+    public Item(long id, String name, String condition, String description, String conditionComment, boolean activetrade) {
         this.id = id;
         this.name = name;
         this.condition = condition;
@@ -36,7 +44,7 @@ public class Item {
         this.activetrade = activetrade;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

@@ -6,11 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item, Integer> {
-    List<Item> findAllById(int id);
 
-    List<Item> findAllByPart(String part);
+    List<Item> findByActivetrade(boolean activetrade);
+    List<Item> findByCondition(String condition);
+    List<Item> findByConditionAndActivetrade(String condition, boolean activetrade);
 
-    List<Item> findAllOffered();
-
-    List<Item> findAllActive(boolean activetrade);
 }

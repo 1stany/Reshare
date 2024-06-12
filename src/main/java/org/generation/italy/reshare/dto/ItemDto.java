@@ -3,7 +3,7 @@ package org.generation.italy.reshare.dto;
 import org.generation.italy.reshare.model.Item;
 
 public class ItemDto {
-    private int id;
+    private long id;
     private String name;
     private String description;
     private boolean activetrade;

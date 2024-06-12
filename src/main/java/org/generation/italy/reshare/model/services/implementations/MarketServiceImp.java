@@ -21,41 +21,64 @@ public class MarketServiceImp implements MarketService {
 
     @Override
     public List<Item> searchItemsByCategory(int categoryId) {
-        return itemRepo.findAllById(categoryId);
+        return null;
     }
 
     @Override
     public List<Item> searchItemsByCity(int cityId) {
-        return itemRepo.findAllById(cityId);
+        return null;
     }
 
+    //Le condizioni salvate sul db in un check sono: come nuovo, ottimo, buono, accettabile
+    //è meglio mettere l'eccezione o gestire un optional di list di item?
     @Override
     public List<Item> searchItemsByCondition(String condition) {
-        return itemRepo.findAllByPart(condition);
+        condition = condition.toLowerCase();
+        if(Item.CONDITIONS.contains(condition)){
+            return null;
+        }
+        throw new IllegalArgumentException("Condizione non valida");
     }
 
     @Override
     public List<Item> searchActiveItems(boolean activetrade) {
-        return itemRepo.findAllActive(activetrade);
+        return null;
     }
 
     @Override
     public List<Item> searchItemsByUser(int userId) {
-        return itemRepo.findAllById(userId);
+        return null;
     }
 
     @Override
     public List<Item> searchItemsByName(String itemTypeName) {
-        return itemRepo.findAllByPart(itemTypeName);
+        return null;
     }
 
     @Override
     public List<Item> searchOfferedItems() {
-        return itemRepo.findAllOffered();
+        return null;
     }
 
     @Override
     public Optional<AppUser> findUserById(int id) {
         return appUserRepo.findById(id);
+    }
+
+    @Override
+    public List<Item> searchItems(String condition, Boolean activetrade) {
+        if(condition!= null && !Item.CONDITIONS.contains(condition)) {
+            throw new IllegalArgumentException("Condizione non valida");
+        }
+        if(condition==null && activetrade == null){
+            return itemRepo.findAll();
+        }
+        if(condition == null && activetrade != null) {
+            return itemRepo.findByActivetrade(activetrade);
+        }
+        if(condition != null && activetrade == null) {
+            return itemRepo.findByCondition(condition);
+        }
+        return itemRepo.findByConditionAndActivetrade(condition, activetrade);
     }
 }

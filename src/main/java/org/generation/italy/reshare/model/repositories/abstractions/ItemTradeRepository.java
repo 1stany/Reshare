@@ -12,6 +12,4 @@ public interface ItemTradeRepository extends JpaRepository<ItemTrade, Integer> {
     List<ItemTrade> findByRequestDate(LocalDate requestDate);
 
     List<ItemTrade> findByExchangeDate(LocalDate exchangeDate);
-
-    List<ItemTrade> findByItemName(String itemName);
 }

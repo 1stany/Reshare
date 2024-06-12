@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 public class ItemTypeDto {
 
-    private int id;
+    private long id;
     private String name;
     private String description;
     private String dateAdded;
@@ -21,7 +21,7 @@ public class ItemTypeDto {
 
     public ItemTypeDto() {}
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

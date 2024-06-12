@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class AppUserDto {
-    private int id;
+    private long id;
     private String firstname;
     private String lastname;
     private String email;

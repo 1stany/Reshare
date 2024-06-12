@@ -3,7 +3,7 @@ package org.generation.italy.reshare.dto;
 import org.generation.italy.reshare.model.City;
 
 public class CityDto {
-    private int id;
+    private long id;
     private String name;
     private String lockerpoint;
 

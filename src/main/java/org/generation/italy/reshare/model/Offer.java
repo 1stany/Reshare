@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String description;
     private boolean active;
     @OneToOne
@@ -23,7 +23,7 @@ public class Offer {
     public Offer() {
     }
 
-    public Offer(int id, String description, boolean active) {
+    public Offer(long id, String description, boolean active) {
         this.id = id;
         this.description = description;
         this.active = active;
@@ -37,7 +37,7 @@ public class Offer {
         return offeredItem;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

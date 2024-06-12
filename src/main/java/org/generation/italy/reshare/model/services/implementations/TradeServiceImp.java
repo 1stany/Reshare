@@ -47,7 +47,7 @@ public class TradeServiceImp implements TradeService {
 
     @Override
     public List<ItemTrade> getAllByItem(String itemName) {
-        return tradeRepo.findByItemName(itemName);
+        return null;
     }
 
     @Override
