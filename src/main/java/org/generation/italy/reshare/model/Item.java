@@ -2,6 +2,7 @@ package org.generation.italy.reshare.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +17,8 @@ public class Item {
     private String description;
     private boolean activetrade;
     private String condition;
+    @Column (name = "creation_date")
+    private LocalDate creationDate;
     @Column(name = "condition_comment")
     private String conditionComment;
     @ManyToOne
