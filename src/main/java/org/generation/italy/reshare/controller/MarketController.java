@@ -23,8 +23,9 @@ public class MarketController {
 
     @GetMapping
     public ResponseEntity<List<ItemDto>> searchItems (@RequestParam(required = false) String condition,
-                                                      @RequestParam(required = false) Boolean activetrade){
-        List<Item> result = marketService.searchItems(condition, activetrade);
+                                                      @RequestParam(required = false) Boolean activetrade,
+                                                      @RequestParam(required = false) Integer lastN){
+        List<Item> result = marketService.searchItems(condition, activetrade, lastN);
         return ResponseEntity.ok().body(result.stream().map(ItemDto::new).toList());
     }
 

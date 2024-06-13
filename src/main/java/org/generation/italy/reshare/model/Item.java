@@ -39,13 +39,14 @@ public class Item {
     public Item() {
     }
 
-    public Item(long id, String name, String condition, String description, String conditionComment, boolean activetrade) {
+    public Item(long id, String name, String condition, String description, String conditionComment, boolean activetrade, LocalDate creationDate ) {
         this.id = id;
         this.name = name;
         this.condition = condition;
         this.description = description;
         this.conditionComment = conditionComment;
         this.activetrade = activetrade;
+        this.creationDate = creationDate;
     }
 
     public long getId() {
@@ -64,7 +65,9 @@ public class Item {
         return name;
     }
 
-
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
 
     public String getCondition() {
         return condition;

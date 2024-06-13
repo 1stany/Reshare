@@ -4,6 +4,8 @@ import org.generation.italy.reshare.exceptions.EntityNotFoundException;
 import org.generation.italy.reshare.model.*;
 import org.generation.italy.reshare.model.repositories.abstractions.*;
 import org.generation.italy.reshare.model.services.abstractions.MarketService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -77,7 +79,11 @@ public class MarketServiceImp implements MarketService {
     }
 
     @Override
-    public List<Item> searchItems(String condition, Boolean activetrade) {
+    public List<Item> searchItems(String condition, Boolean activetrade, Integer lastN) {
+        if(lastN!=null){
+            Pageable pageable = PageRequest.of(0,lastN);
+            return itemRepo.findAllByOrderByCreationDateDesc(pageable).getContent();
+        }
         if(condition!= null && !Item.CONDITIONS.contains(condition)) {
             throw new IllegalArgumentException("Condizione non valida");
         }

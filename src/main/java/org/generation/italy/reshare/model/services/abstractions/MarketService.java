@@ -15,5 +15,5 @@ List<Item> searchItemsByUser(int userId) throws EntityNotFoundException;
 List<Item> searchItemsByName(String itemTypeName);
 List<Item> searchOfferedItems();
 Optional<AppUser> findUserById (int id);
-List<Item> searchItems(String condition, Boolean activetrade);
+List<Item> searchItems(String condition, Boolean activetrade, Integer lastN);
 }

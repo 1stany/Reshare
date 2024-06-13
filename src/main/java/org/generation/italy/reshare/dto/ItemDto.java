@@ -2,6 +2,9 @@ package org.generation.italy.reshare.dto;
 
 import org.generation.italy.reshare.model.Item;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class ItemDto {
     private long id;
     private String name;
@@ -10,6 +13,7 @@ public class ItemDto {
     private String condition;
     private String conditionComment;
     private String categoryName;
+    private String creationDate;
 
     public ItemDto() {
     }
@@ -22,6 +26,7 @@ public class ItemDto {
         this.conditionComment = item.getConditionComment();
         this.activetrade = item.isActivetrade() ; //Chiedere a Riccardo se tenere boolean o convertirla in stringa
         this.categoryName = item.getCategory().getName();
+        this.creationDate = item.getCreationDate().format(DateTimeFormatter.ofPattern("d-MMM-uuuu"));
     }
 
     public void setId(long id) {
@@ -30,6 +35,14 @@ public class ItemDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
     }
 
     public void setDescription(String description) {
@@ -49,7 +62,7 @@ public class ItemDto {
     }
 
     public Item toItem(){
-        return new Item(this.id, this.name, this.condition, this.description, this.conditionComment, this.activetrade);
+        return new Item(this.id, this.name, this.condition, this.description, this.conditionComment, this.activetrade, LocalDate.parse(this.creationDate, DateTimeFormatter.ofPattern("uuuu-MM-dd")));
     }
 
     public long getId() {
