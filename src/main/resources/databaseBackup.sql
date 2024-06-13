@@ -171,6 +171,7 @@ CREATE TABLE public.object (
     condition_comment character varying(128),
     category_id bigint NOT NULL,
     owner_id bigint NOT NULL,
+    creation_date date DEFAULT now() NOT NULL,
     CONSTRAINT check_condition CHECK (((condition)::text = ANY ((ARRAY['come nuovo'::character varying, 'ottimo'::character varying, 'buono'::character varying, 'accettabile'::character varying])::text[])))
 );
 
