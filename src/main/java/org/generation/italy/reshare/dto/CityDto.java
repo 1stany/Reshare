@@ -18,6 +18,6 @@ public class CityDto {
     }
 
     public City toCity(){
-        return new City(this.name, this.lockerpoint);
+        return new City(this.id,this.name, this.lockerpoint);
     }
 }

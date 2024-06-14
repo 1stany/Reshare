@@ -14,6 +14,7 @@ public class ItemDto {
     private String conditionComment;
     private String categoryName;
     private String creationDate;
+    private String ownerCityName;
 
     public ItemDto() {
     }
@@ -27,6 +28,7 @@ public class ItemDto {
         this.activetrade = item.isActivetrade() ; //Chiedere a Riccardo se tenere boolean o convertirla in stringa
         this.categoryName = item.getCategory().getName();
         this.creationDate = item.getCreationDate().format(DateTimeFormatter.ofPattern("d-MMM-uuuu"));
+        this.ownerCityName = item.getOwner().getCity().getName();
     }
 
     public void setId(long id) {
@@ -95,5 +97,13 @@ public class ItemDto {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public String getOwnerCityName() {
+        return ownerCityName;
+    }
+
+    public void setOwnerCityName(String ownerCityName) {
+        this.ownerCityName = ownerCityName;
     }
 }

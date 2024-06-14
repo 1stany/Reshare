@@ -85,4 +85,7 @@ public class AppUser {
         return wishlist;
     }
 
+    public City getCity() {
+        return city;
+    }
 }

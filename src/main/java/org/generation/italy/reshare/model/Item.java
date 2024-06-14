@@ -73,6 +73,9 @@ public class Item {
         return condition;
     }
 
+    public AppUser getOwner() {
+        return owner;
+    }
 
     public boolean isActivetrade() {
         return activetrade;
