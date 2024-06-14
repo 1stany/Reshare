@@ -22,24 +22,14 @@ public class AppUser {
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
-    //@OneToMany (mappedBy = "owner")
-    //private List<Item> items = new ArrayList<>();
-    //@OneToOne (mappedBy = "requestingUser")
-    //private ItemTrade requestingItemTrade;  //oggetto che si vuole riceveree
-    //@OneToOne (mappedBy = "homeUser")
-    //private ItemTrade homeItemTrade;        //oggetto dello user che si vuole scambiare
+    private String password;
     @OneToMany (mappedBy = "wishingUser")
     private List<ItemType> wishlist = new ArrayList<>();
-    //@OneToOne (mappedBy = "offeringUser")
-    //private Offer offer;
-    //@OneToMany (mappedBy = "author", cascade = {CascadeType.REMOVE})
-    //private List<Review> reviews = new ArrayList<>();
 
     public AppUser() {
     }
 
-    public AppUser(long id, String firstname, String lastname, String email, String phone, String gender, LocalDate birthdate, String description) {
-        this.id = id;
+    public AppUser(String firstname, String lastname, String email, String phone, String gender, LocalDate birthdate, String description, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -47,6 +37,12 @@ public class AppUser {
         this.gender = gender;
         this.birthdate = birthdate;
         this.description = description;
+        this.password = password;
+    }
+
+    public AppUser(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     public long getId() {
@@ -87,5 +83,13 @@ public class AppUser {
 
     public City getCity() {
         return city;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String encode) {
+        this.password = encode;
     }
 }

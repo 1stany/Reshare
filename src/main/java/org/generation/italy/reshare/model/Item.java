@@ -28,18 +28,12 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private AppUser owner;
-//    @OneToOne(mappedBy = "requestedItem")
-//    private ItemTrade requestedItemTrade;
-//    @OneToOne(mappedBy = "exchangedItem", fetch = FetchType.LAZY)
-//    private ItemTrade exchangedItemTrade;
-//    @OneToOne(mappedBy = "offeredItem")
-//    private Offer offer;
     public static final List<String> CONDITIONS = Arrays.asList("comenuovo", "ottimo", "buono", "accettabile");
 
     public Item() {
     }
 
-    public Item(long id, String name, String condition, String description, String conditionComment, boolean activetrade, LocalDate creationDate ) {
+    public Item(long id, String name, String condition, String description, String conditionComment, boolean activetrade, LocalDate creationDate) {
         this.id = id;
         this.name = name;
         this.condition = condition;

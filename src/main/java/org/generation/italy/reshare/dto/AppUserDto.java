@@ -16,6 +16,8 @@ public class AppUserDto {
     private String birthdate;
     private String description;
 
+    private String password;
+
     public AppUserDto() {}
 
     public AppUserDto(AppUser appUser) {
@@ -27,9 +29,11 @@ public class AppUserDto {
         this.gender = appUser.getGender();
         this.birthdate = appUser.getBirthdate().format(DateTimeFormatter.ofPattern("d-MMM-uuuu"));
         this.description = appUser.getDescription();
+
+        this.password = appUser.getPassword();
     }
 
     public AppUser toAppUser(){
-        return new AppUser(this.id, this.firstname, this.lastname, this.email, this.phone, this.gender, LocalDate.parse(this.birthdate, DateTimeFormatter.ofPattern("uuuu-MM-dd")), this.description);
+        return new AppUser(this.id, this.firstname, this.lastname, this.email, this.phone, this.gender, LocalDate.parse(this.birthdate, DateTimeFormatter.ofPattern("uuuu-MM-dd")), this.description, this.password);
     }
 }
