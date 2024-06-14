@@ -34,6 +34,6 @@ public class AppUserDto {
     }
 
     public AppUser toAppUser(){
-        return new AppUser(this.id, this.firstname, this.lastname, this.email, this.phone, this.gender, LocalDate.parse(this.birthdate, DateTimeFormatter.ofPattern("uuuu-MM-dd")), this.description, this.password);
+        return new AppUser(this.firstname, this.lastname, this.email, this.phone, this.gender, LocalDate.parse(this.birthdate, DateTimeFormatter.ofPattern("uuuu-MM-dd")), this.description, this.password);
     }
 }
