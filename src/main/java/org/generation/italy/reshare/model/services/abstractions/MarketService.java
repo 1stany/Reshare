@@ -8,12 +8,12 @@ import java.util.Optional;
 
 public interface MarketService {
 List<Item> searchItemsByCategory(int categoryId) throws EntityNotFoundException;
-List<Item> searchItemsByCity(int cityId);
-List<Item> searchItemsByCondition(String condition);
-List<Item> searchActiveItems(boolean activetrade);
+//List<Item> searchItemsByCity(int cityId);
 List<Item> searchItemsByUser(int userId) throws EntityNotFoundException;
-List<Item> searchItemsByName(String itemTypeName);
-List<Item> searchOfferedItems();
-Optional<AppUser> findUserById (int id);
+//List<Item> searchItemsByName(String itemTypeName);
+//List<Item> searchOfferedItems();
+//Optional<AppUser> findUserById (int id);
 List<Item> searchItems(String condition, Boolean activetrade, Integer lastN);
+
+Item findItemById(int id) throws EntityNotFoundException;
 }

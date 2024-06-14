@@ -34,27 +34,6 @@ public class MarketServiceImp implements MarketService {
     }
 
     @Override
-    public List<Item> searchItemsByCity(int cityId) {
-        return null;
-    }
-
-    //Le condizioni salvate sul db in un check sono: come nuovo, ottimo, buono, accettabile
-    //è meglio mettere l'eccezione o gestire un optional di list di item?
-    @Override
-    public List<Item> searchItemsByCondition(String condition) {
-        condition = condition.toLowerCase();
-        if(Item.CONDITIONS.contains(condition)){
-            return null;
-        }
-        throw new IllegalArgumentException("Condizione non valida");
-    }
-
-    @Override
-    public List<Item> searchActiveItems(boolean activetrade) {
-        return null;
-    }
-
-    @Override
     public List<Item> searchItemsByUser(int userId) throws EntityNotFoundException{
         Optional<AppUser> oU = appUserRepo.findById(userId);
         if(oU.isEmpty()){
@@ -62,21 +41,12 @@ public class MarketServiceImp implements MarketService {
         }
         return itemRepo.findByOwnerId(userId);
     }
-
-    @Override
-    public List<Item> searchItemsByName(String itemTypeName) {
-        return null;
-    }
-
-    @Override
-    public List<Item> searchOfferedItems() {
-        return null;
-    }
-
-    @Override
-    public Optional<AppUser> findUserById(int id) {
-        return appUserRepo.findById(id);
-    }
+//
+//
+//    @Override
+//    public Optional<AppUser> findUserById(int id) {
+//        return appUserRepo.findById(id);
+//    }
 
     @Override
     public List<Item> searchItems(String condition, Boolean activetrade, Integer lastN) {
@@ -97,5 +67,14 @@ public class MarketServiceImp implements MarketService {
             return itemRepo.findByCondition(condition);
         }
         return itemRepo.findByConditionAndActivetrade(condition, activetrade);
+    }
+
+    @Override
+    public Item findItemById(int id) throws EntityNotFoundException {
+        Optional<Item> optItem = itemRepo.findById(id);
+        if(optItem.isEmpty()){
+            throw new EntityNotFoundException(Item.class, id);
+        }
+        return optItem.get();
     }
 }

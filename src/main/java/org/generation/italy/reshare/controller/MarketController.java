@@ -28,6 +28,15 @@ public class MarketController {
         List<Item> result = marketService.searchItems(condition, activetrade, lastN);
         return ResponseEntity.ok().body(result.stream().map(ItemDto::new).toList());
     }
+    @GetMapping ("/item/{id}")
+    public ResponseEntity<?> getItemById(@PathVariable int id) {
+        try {
+            Item result = marketService.findItemById(id);
+            return ResponseEntity.ok().body(new ItemDto(result));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
 
     @GetMapping ("/user/{id}/item")
     public ResponseEntity<?> getItemsByUser (@PathVariable int id) {
@@ -38,6 +47,8 @@ public class MarketController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
+
+
 
     @GetMapping ("/category/{id}/item")
     public ResponseEntity<?> getItemByCategory (@PathVariable int id){
