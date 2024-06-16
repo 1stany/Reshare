@@ -33,6 +33,42 @@ public class AppUserDto {
         this.password = appUser.getPassword();
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public AppUser toAppUser(){
         return new AppUser(this.firstname, this.lastname, this.email, this.phone, this.gender, LocalDate.parse(this.birthdate, DateTimeFormatter.ofPattern("uuuu-MM-dd")), this.description, this.password);
     }
