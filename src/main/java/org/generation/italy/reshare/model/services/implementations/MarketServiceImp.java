@@ -25,7 +25,7 @@ public class MarketServiceImp implements MarketService {
 
 
     @Override
-    public List<Item> searchItemsByCategory(int categoryId) throws EntityNotFoundException {
+    public List<Item> searchItemsByCategory(long categoryId) throws EntityNotFoundException {
         Optional<Category> oC = categoryRepo.findById(categoryId);
         if(oC.isEmpty()){
             throw new EntityNotFoundException(oC.getClass(), categoryId);
@@ -34,7 +34,7 @@ public class MarketServiceImp implements MarketService {
     }
 
     @Override
-    public List<Item> searchItemsByUser(int userId) throws EntityNotFoundException{
+    public List<Item> searchItemsByUser(long userId) throws EntityNotFoundException{
         Optional<AppUser> oU = appUserRepo.findById(userId);
         if(oU.isEmpty()){
             throw new EntityNotFoundException(AppUser.class, userId);
@@ -70,7 +70,7 @@ public class MarketServiceImp implements MarketService {
     }
 
     @Override
-    public Item findItemById(int id) throws EntityNotFoundException {
+    public Item findItemById(long id) throws EntityNotFoundException {
         Optional<Item> optItem = itemRepo.findById(id);
         if(optItem.isEmpty()){
             throw new EntityNotFoundException(Item.class, id);

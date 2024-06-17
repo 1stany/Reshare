@@ -46,4 +46,12 @@ public class ItemType {
     public LocalDate getDateAdded() {
         return dateAdded;
     }
+
+    public AppUser getWishingUser() {
+        return wishingUser;
+    }
+
+    public void setWishingUser(AppUser wishingUser) {
+        this.wishingUser = wishingUser;
+    }
 }

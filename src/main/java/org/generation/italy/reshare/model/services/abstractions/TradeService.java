@@ -8,14 +8,14 @@ import java.util.List;
 
 public interface TradeService {
     List<ItemTrade> getAll();
-    List<ItemTrade> getAllById(int id);
+    List<ItemTrade> getAllById(long id);
     List<ItemTrade> getAllByRequestDate(LocalDate requestDate);
     List<ItemTrade> getAllByExchangeDate(LocalDate exchangeDate); //servono due date????
     List<ItemTrade> getAllByItem(String itemName);
-    AppUser getUserById(int id);
+    AppUser getUserById(long id);
 
-    void exchangeItem(int userId1, int userId2);
-    void exchangeOfferedItem(int userId1);
+    void exchangeItem(long userId1, long userId2);
+    void exchangeOfferedItem(long userId1);
 
 
 

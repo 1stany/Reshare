@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface ItemTradeRepository extends JpaRepository<ItemTrade, Integer> {
-    List<ItemTrade> findAllById(int id);
+public interface ItemTradeRepository extends JpaRepository<ItemTrade, Long> {
+    List<ItemTrade> findAllById(long id);
 
     List<ItemTrade> findByRequestDate(LocalDate requestDate);
 
