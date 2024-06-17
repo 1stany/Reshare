@@ -8,12 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ItemRepository extends JpaRepository<Item, Integer> {
+public interface ItemRepository extends JpaRepository<Item, Long> {
 
     List<Item> findByActivetrade(boolean activetrade);
     List<Item> findByCondition(String condition);
     List<Item> findByConditionAndActivetrade(String condition, boolean activetrade);
-    List<Item> findByOwnerId(int userId);
-    List<Item> findByCategoryId(int categoryId);
+    List<Item> findByOwnerId(long userId);
+    List<Item> findByCategoryId(long categoryId);
     Page<Item> findAllByOrderByCreationDateDesc(Pageable pageable);
 }

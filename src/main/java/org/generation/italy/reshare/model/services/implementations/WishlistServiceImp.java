@@ -21,7 +21,7 @@ public class WishlistServiceImp implements WishlistService {
     }
 
     @Override
-    public AppUser getUserById(int id) {
+    public AppUser getUserById(long id) {
         Optional<AppUser> u = appUserRepo.findById(id);
         if(u.isEmpty()){
             throw new IllegalArgumentException("Utente non trovato");
@@ -30,12 +30,12 @@ public class WishlistServiceImp implements WishlistService {
     }
 
     @Override
-    public Optional<ItemType> getItemTypeById(int id) {
+    public Optional<ItemType> getItemTypeById(long id) {
         return itemTypeRepo.findById(id);
     }
 
     @Override
-    public boolean addItemTypeById(int userId, int itemTypeId) {
+    public boolean addItemTypeById(long userId, long itemTypeId) {
         List<ItemType> wishlist = getUserById(userId).getWishlist();
         Optional<ItemType> otpItem = getItemTypeById(itemTypeId);
         if (otpItem.isPresent() && wishlist.stream().filter(i->i.getId()==itemTypeId).findFirst().isEmpty()){
@@ -46,7 +46,7 @@ public class WishlistServiceImp implements WishlistService {
     }
 
     @Override
-    public boolean removeItemTypeById(int userId, int itemTypeId) {
+    public boolean removeItemTypeById(long userId, long itemTypeId) {
         List<ItemType> wishlist = getUserById(userId).getWishlist();
         Optional<ItemType> otpItem = getItemTypeById(itemTypeId);
         if (otpItem.isPresent() && wishlist.stream().filter(i->i.getId()==itemTypeId).findFirst().isPresent()){
@@ -57,7 +57,7 @@ public class WishlistServiceImp implements WishlistService {
     }
 
     @Override
-    public boolean clearWishlist(int userId) {
+    public boolean clearWishlist(long userId) {
         Optional<AppUser> optUser = appUserRepo.findById(userId);
         if(optUser.isPresent()){
             optUser.get().getWishlist().clear();
@@ -71,12 +71,12 @@ public class WishlistServiceImp implements WishlistService {
     }
 
     @Override
-    public List<ItemType> getAllItemTypeByCategory(int categoryId) {
+    public List<ItemType> getAllItemTypeByCategory(long categoryId) {
         return itemTypeRepo.findAllById(categoryId);
     }
 
     @Override
-    public List<ItemType> getAllItemTypeByCity(int cityId) {
+    public List<ItemType> getAllItemTypeByCity(long cityId) {
         return itemTypeRepo.findAllById(cityId);
     }
 }

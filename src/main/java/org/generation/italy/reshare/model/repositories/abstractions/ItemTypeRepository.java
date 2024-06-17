@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ItemTypeRepository extends JpaRepository<ItemType, Integer> {
-    List<ItemType> findAllById(int id);
+public interface ItemTypeRepository extends JpaRepository<ItemType, Long> {
+    List<ItemType> findAllById(long id);
 }

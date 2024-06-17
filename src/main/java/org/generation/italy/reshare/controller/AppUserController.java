@@ -1,6 +1,8 @@
 package org.generation.italy.reshare.controller;
 
 import org.generation.italy.reshare.dto.AppUserDto;
+import org.generation.italy.reshare.dto.LoginInfoDto;
+import org.generation.italy.reshare.dto.RegisterDto;
 import org.generation.italy.reshare.dto.TokenDto;
 import org.generation.italy.reshare.model.AppUser;
 import org.generation.italy.reshare.model.services.abstractions.AppUserService;
@@ -29,20 +31,22 @@ public class AppUserController {
     }
 
     @PostMapping("/register")
-    public AppUser register(@RequestBody AppUserDto user) {
-        return appUserService.saveUser(user.toAppUser());
+    public RegisterDto register(@RequestBody RegisterDto registerUser) {
+        AppUser user = registerUser.toAppUser();
+        AppUser savedUser = appUserService.saveUser(user);
+        AppUserDto userDto = new AppUserDto(savedUser);
+        return new RegisterDto(userDto, user.getPassword());
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AppUserDto user){
+    public ResponseEntity<TokenDto> login(@RequestBody LoginInfoDto login){
 
         Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
-
+                .authenticate(new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword()));
         if(authentication.isAuthenticated())
-            return ResponseEntity.ok(new TokenDto(jwtService.generateToken(user.getEmail())));
+            return ResponseEntity.ok(new TokenDto(jwtService.generateToken(login.getEmail()),null));
         else
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login Failed");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new TokenDto(null, "Login Failed"));
 
     }
 }

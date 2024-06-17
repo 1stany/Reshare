@@ -31,7 +31,7 @@ public class TradeServiceImp implements TradeService {
     }
 
     @Override
-    public List<ItemTrade> getAllById(int id) {
+    public List<ItemTrade> getAllById(long id) {
         return tradeRepo.findAllById(id);
     }
 
@@ -51,7 +51,7 @@ public class TradeServiceImp implements TradeService {
     }
 
     @Override
-    public AppUser getUserById(int id) {
+    public AppUser getUserById(long id) {
         Optional<AppUser> u = appUserRepo.findById(id);
         if(u.isEmpty()){
             throw new IllegalArgumentException("Utente non trovato");
@@ -62,7 +62,7 @@ public class TradeServiceImp implements TradeService {
     //item1 è l'oggetto che si desidera
     //item2 è l'oggetto che si scambia
     @Override
-    public void exchangeItem(int userId1, int userId2) {
+    public void exchangeItem(long userId1, long userId2) {
         AppUser user1 = getUserById(userId1);
         AppUser user2 = getUserById(userId2);
         //Item u1Item = user1.getRequestingItemTrade().getRequestedItem();
@@ -83,7 +83,7 @@ public class TradeServiceImp implements TradeService {
 
 
     @Override
-    public void exchangeOfferedItem(int userId1) {
+    public void exchangeOfferedItem(long userId1) {
 //        AppUser user1 = getUserById(userId1);
 //        Item u1Item = user1.getOffer().getOfferedItem();
 //        Optional<Item> offeredItem = user1.getItems().stream().filter(i->i.getId()==u1Item.getId()).findFirst();
