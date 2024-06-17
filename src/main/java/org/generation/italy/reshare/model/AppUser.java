@@ -102,4 +102,8 @@ public class AppUser {
     public void setPassword(String encode) {
         this.password = encode;
     }
+
+    public String getFullName() {
+        return firstname + " " + lastname;
+    }
 }

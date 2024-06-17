@@ -15,6 +15,8 @@ public class ItemDto {
     private String categoryName;
     private String creationDate;
     private String ownerCityName;
+    private String ownerName;
+    private String ownerEmail;
 
     public ItemDto() {
     }
@@ -25,14 +27,24 @@ public class ItemDto {
         this.condition = item.getCondition();
         this.description = item.getDescription();
         this.conditionComment = item.getConditionComment();
-        this.activetrade = item.isActivetrade() ; //Chiedere a Riccardo se tenere boolean o convertirla in stringa
+        this.activetrade = item.isActivetrade() ;
         this.categoryName = item.getCategory().getName();
         this.creationDate = item.getCreationDate().format(DateTimeFormatter.ofPattern("d-MMM-uuuu"));
         this.ownerCityName = item.getOwner().getCity().getName();
+        this.ownerName = item.getOwner().getFullName();
+        this.ownerEmail = item.getOwner().getEmail();
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getOwnerEmail() {
+        return ownerEmail;
+    }
+
+    public void setOwnerEmail(String ownerEmail) {
+        this.ownerEmail = ownerEmail;
     }
 
     public void setName(String name) {
@@ -61,6 +73,14 @@ public class ItemDto {
 
     public void setConditionComment(String conditionComment) {
         this.conditionComment = conditionComment;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 
     public Item toItem(){
