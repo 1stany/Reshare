@@ -37,7 +37,7 @@ public class WishlistController {
         }
     }
 
-    @GetMapping("/user/{userId}/lamiawishlist")
+    @GetMapping("/user/{userId}/wishlist")
     public ResponseEntity<?> getWishlistByUser(@PathVariable long userId){
         try {
             List<ItemType> wishlist = wishlistService.getWishlistByUserId(userId);
