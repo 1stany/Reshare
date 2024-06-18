@@ -53,26 +53,12 @@ public class TradeServiceImp implements TradeService {
         return null;
     }
 
-    @Override
-    public AppUser getUserById(long id) {
-        Optional<AppUser> u = appUserRepo.findById(id);
-        if(u.isEmpty()){
-            throw new IllegalArgumentException("Utente non trovato");
-        }
-        return u.get();
-    }
-
-    @Override
-    public AppUser getUserByEmail(String email) {
-        return appUserRepo.findByEmail(email);
-    }
-
     //item1 è l'oggetto che si desidera
     //item2 è l'oggetto che si scambia
     @Override
     public void exchangeItem(long userId1, long userId2) {
-        AppUser user1 = getUserById(userId1);
-        AppUser user2 = getUserById(userId2);
+        //AppUser user1 = getUserById(userId1);
+        //AppUser user2 = getUserById(userId2);
         //Item u1Item = user1.getRequestingItemTrade().getRequestedItem();
         //Item u2Item = user2.getHomeItemTrade().getExchangedItem();
         //Optional<Item> exchangedItem = user1.getItems().stream().filter(i->i.getId()==u2Item.getId()).findFirst();
@@ -113,13 +99,6 @@ public class TradeServiceImp implements TradeService {
         return tradeRepo.save(it);
     }
 
-    @Override
-    public Item findItemById(long id) throws EntityNotFoundException {
-        Optional<Item> opItem = itemRepo.findById(id);
-        if(opItem.isEmpty()){
-            throw new EntityNotFoundException(opItem.getClass(), id);
-        }
-        return opItem.get();
-    }
+
 
 }

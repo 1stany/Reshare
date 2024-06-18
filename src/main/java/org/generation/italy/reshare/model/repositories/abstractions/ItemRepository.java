@@ -18,8 +18,5 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findByOwnerId(long userId);
     List<Item> findByCategoryId(long categoryId);
     Page<Item> findAllByOrderByCreationDateDesc(Pageable pageable);
-
-    //AppUser findByEmail(String email);
-    Optional<Item> findById(long id);
     Item findByName(String name);
 }

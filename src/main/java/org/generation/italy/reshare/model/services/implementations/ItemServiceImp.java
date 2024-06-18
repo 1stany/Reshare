@@ -1,5 +1,6 @@
 package org.generation.italy.reshare.model.services.implementations;
 
+import org.generation.italy.reshare.exceptions.EntityNotFoundException;
 import org.generation.italy.reshare.model.AppUser;
 import org.generation.italy.reshare.model.Category;
 import org.generation.italy.reshare.model.City;
@@ -11,18 +12,19 @@ import org.generation.italy.reshare.model.repositories.abstractions.ItemReposito
 import org.generation.italy.reshare.model.services.abstractions.ItemService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ItemServiceImp implements ItemService {
     private ItemRepository itemRepo;
     private CategoryRepository catRepo;
     private CityRepository cityRepo;
-    private AppUserRepository appUserRepo;
 
-    public ItemServiceImp(ItemRepository itemRepo, CategoryRepository catRepo, CityRepository cityRepo, AppUserRepository appUserRepo) {
+
+    public ItemServiceImp(ItemRepository itemRepo, CategoryRepository catRepo, CityRepository cityRepo) {
         this.itemRepo = itemRepo;
         this.catRepo = catRepo;
         this.cityRepo = cityRepo;
-        this.appUserRepo = appUserRepo;
     }
 
     @Override
@@ -40,9 +42,15 @@ public class ItemServiceImp implements ItemService {
         return cityRepo.findByName(name);
     }
 
+
+
     @Override
-    public AppUser findOwnerByEmail(String ownerEmail) {
-        return appUserRepo.findByEmail(ownerEmail);
+    public Item findItemById(long id) throws EntityNotFoundException {
+        Optional<Item> opItem = itemRepo.findById(id);
+        if(opItem.isEmpty()){
+            throw new EntityNotFoundException(opItem.getClass(), id);
+        }
+        return opItem.get();
     }
 
 }
