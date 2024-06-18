@@ -1,5 +1,6 @@
 package org.generation.italy.reshare.model.repositories.abstractions;
 
+import org.generation.italy.reshare.model.AppUser;
 import org.generation.italy.reshare.model.Item;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -7,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
@@ -16,4 +18,8 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findByOwnerId(long userId);
     List<Item> findByCategoryId(long categoryId);
     Page<Item> findAllByOrderByCreationDateDesc(Pageable pageable);
+
+    //AppUser findByEmail(String email);
+    Optional<Item> findById(long id);
+    Item findByName(String name);
 }
