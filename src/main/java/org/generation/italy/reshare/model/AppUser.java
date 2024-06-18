@@ -29,6 +29,16 @@ public class AppUser {
     public AppUser() {
     }
 
+    public AppUser(String firstname, String lastname, String email, String phone, String gender, LocalDate birthdate, String description) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone = phone;
+        this.gender = gender;
+        this.birthdate = birthdate;
+        this.description = description;
+    }
+
     public AppUser(String firstname, String lastname, String email, String phone, String gender, LocalDate birthdate, String description, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -91,5 +101,9 @@ public class AppUser {
 
     public void setPassword(String encode) {
         this.password = encode;
+    }
+
+    public String getFullName() {
+        return firstname + " " + lastname;
     }
 }

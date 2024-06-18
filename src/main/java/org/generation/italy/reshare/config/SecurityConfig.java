@@ -20,11 +20,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
     private UserDetailsService userDetailsService;
     private JwtFilter jwtFilter;
+    private SecurityProperties securityProperties;
 
     @Autowired
-    public SecurityConfig(UserDetailsService userDetailsService, JwtFilter jwtFilter) {
+    public SecurityConfig(UserDetailsService userDetailsService, JwtFilter jwtFilter, SecurityProperties securityProperties) {
         this.userDetailsService = userDetailsService;
         this.jwtFilter = jwtFilter;
+        this.securityProperties = securityProperties;
     }
 
     @Bean
@@ -39,7 +41,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("register", "login", "market", "market/item/{id}", "wishlist/user/{userId}/itemType/{itemTypeId}")
+                        .requestMatchers(securityProperties.getWhiteList().toArray(new String[0]))
                         .permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
