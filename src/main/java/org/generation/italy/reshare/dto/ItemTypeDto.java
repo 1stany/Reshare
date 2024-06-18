@@ -12,6 +12,7 @@ public class ItemTypeDto {
     private String description;
     private String dateAdded;
 
+
     public ItemTypeDto(ItemType it) {
         this.id = it.getId();
         this.name = it.getName();

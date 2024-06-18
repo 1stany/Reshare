@@ -5,7 +5,6 @@ import org.generation.italy.reshare.model.AppUser;
 import org.generation.italy.reshare.model.ItemType;
 import org.generation.italy.reshare.model.repositories.abstractions.*;
 import org.generation.italy.reshare.model.services.abstractions.WishlistService;
-import org.springframework.data.relational.core.sql.IsNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,14 +40,6 @@ public class WishlistServiceImp implements WishlistService {
 
     @Override
     public boolean addItemTypeById(long userId, long itemTypeId) throws EntityNotFoundException {
-        /*Optional<ItemType> optItem = getItemTypeById(itemTypeId);
-        if(optItem.isPresent()) {
-
-                optItem.get().setWishingUser(getUserById(userId));
-                return true;
-        }
-        return false*/
-
         List<ItemType> wishlist = getUserById(userId).getWishlist();
         Optional<ItemType> otpItem = getItemTypeById(itemTypeId);
         if (otpItem.isPresent() && wishlist.stream().filter(i->i.getId()==itemTypeId).findFirst().isEmpty()){
@@ -60,23 +51,15 @@ public class WishlistServiceImp implements WishlistService {
 
     @Override
     public boolean removeItemTypeById(long userId, long itemTypeId) throws EntityNotFoundException {
-        AppUser user = getUserById(userId);
         Optional<ItemType> optItem = getItemTypeById(itemTypeId);
         if(optItem.isPresent()) {
-            AppUser wishingUser = optItem.get().getWishingUser();
-            if(wishingUser.getId() == userId) {
-                optItem.get().setWishingUser(null);
+            ItemType itemType = optItem.get();
+            if(itemType.getWishingUser().getId() == userId) {
+                itemTypeRepo.deleteById(itemTypeId);
                 return true;
             }
         }
         return false;
-        //List<ItemType> wishlist = getUserById(userId).getWishlist();
-        //Optional<ItemType> otpItem = getItemTypeById(itemTypeId);
-        /*if (otpItem.isPresent() && wishlist.stream().filter(i->i.getId()==itemTypeId).findFirst().isPresent()){
-            wishlist.remove(otpItem.get());
-            return true;
-        }
-        return false;*/
     }
 
     @Override
@@ -101,5 +84,27 @@ public class WishlistServiceImp implements WishlistService {
     @Override
     public List<ItemType> getAllItemTypeByCity(long cityId) {
         return itemTypeRepo.findAllById(cityId);
+    }
+
+    @Override
+    public boolean addItemType(long userId, ItemType itemType) throws EntityNotFoundException {
+        AppUser user = getUserById(userId);
+        if (user != null){
+            itemType.setWishingUser(user);
+            itemTypeRepo.save(itemType);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public List<ItemType> getWishlistByUserId(long id) throws EntityNotFoundException {
+        Optional<AppUser> optU = appUserRepo.findById(id);
+        if (optU.isPresent()){
+            AppUser user = optU.get();
+            return user.getWishlist();
+        }
+        throw new EntityNotFoundException(AppUser.class, id);
+
     }
 }

@@ -16,6 +16,8 @@ public interface WishlistService {
     List<ItemType> getAllItemType();
     List<ItemType> getAllItemTypeByCategory(long id);
     List<ItemType> getAllItemTypeByCity(long id);
+    boolean addItemType(long userId, ItemType itemType) throws EntityNotFoundException;
+    List<ItemType> getWishlistByUserId(long id) throws EntityNotFoundException;
 
 
 }
