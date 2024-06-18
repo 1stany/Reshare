@@ -1,5 +1,8 @@
 package org.generation.italy.reshare.dto;
 
+import org.generation.italy.reshare.model.AppUser;
+import org.generation.italy.reshare.model.Category;
+import org.generation.italy.reshare.model.City;
 import org.generation.italy.reshare.model.Item;
 
 import java.time.LocalDate;
@@ -27,7 +30,7 @@ public class ItemDto {
         this.condition = item.getCondition();
         this.description = item.getDescription();
         this.conditionComment = item.getConditionComment();
-        this.activetrade = item.isActivetrade() ;
+        this.activetrade = item.isActivetrade();
         this.categoryName = item.getCategory().getName();
         this.creationDate = item.getCreationDate().format(DateTimeFormatter.ofPattern("d-MMM-uuuu"));
         this.ownerCityName = item.getOwner().getCity().getName();
@@ -83,8 +86,8 @@ public class ItemDto {
         this.ownerName = ownerName;
     }
 
-    public Item toItem(){
-        return new Item(this.id, this.name, this.condition, this.description, this.conditionComment, this.activetrade, LocalDate.parse(this.creationDate, DateTimeFormatter.ofPattern("uuuu-MM-dd")));
+    public Item toItem(Category category, AppUser owner){
+        return new Item(this.id, this.name, this.condition, this.description, this.conditionComment, this.activetrade, category, LocalDate.parse(this.creationDate, DateTimeFormatter.ofPattern("uuuu-MM-dd")), owner);
     }
 
     public long getId() {

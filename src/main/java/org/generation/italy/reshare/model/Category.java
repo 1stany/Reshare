@@ -13,8 +13,6 @@ public class Category {
     private long id;
     private String name;
     private String description;
-    //@OneToMany (mappedBy = "category")
-    //private List<Item> categoryItem = new ArrayList<>();
     @OneToMany (mappedBy = "category")
     private List<ItemType> categoryItemType = new ArrayList<>();
 
