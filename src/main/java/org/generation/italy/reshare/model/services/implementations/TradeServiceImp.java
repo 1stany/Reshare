@@ -1,10 +1,12 @@
 package org.generation.italy.reshare.model.services.implementations;
 
+import org.generation.italy.reshare.exceptions.EntityNotFoundException;
 import org.generation.italy.reshare.model.AppUser;
 import org.generation.italy.reshare.model.Item;
 import org.generation.italy.reshare.model.ItemTrade;
 import org.generation.italy.reshare.model.Offer;
 import org.generation.italy.reshare.model.repositories.abstractions.*;
+import org.generation.italy.reshare.model.services.abstractions.ItemService;
 import org.generation.italy.reshare.model.services.abstractions.TradeService;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +17,15 @@ import java.util.Optional;
 @Service
 public class TradeServiceImp implements TradeService {
     private AppUserRepository appUserRepo;
-
+    private ItemRepository itemRepo;
     private ItemTradeRepository tradeRepo;
 
 
 
-    public TradeServiceImp(AppUserRepository appUserRepo, ItemTradeRepository tradeRepo){
+    public TradeServiceImp(AppUserRepository appUserRepo, ItemTradeRepository tradeRepo, ItemRepository itemRepo){
         this.appUserRepo = appUserRepo;
         this.tradeRepo = tradeRepo;
+        this.itemRepo = itemRepo;
     }
 
     @Override
@@ -57,6 +60,11 @@ public class TradeServiceImp implements TradeService {
             throw new IllegalArgumentException("Utente non trovato");
         }
         return u.get();
+    }
+
+    @Override
+    public AppUser getUserByEmail(String email) {
+        return appUserRepo.findByEmail(email);
     }
 
     //item1 è l'oggetto che si desidera
@@ -98,4 +106,20 @@ public class TradeServiceImp implements TradeService {
 //            throw new IllegalStateException("L'oggetto non è stato trovato nella lista dell'utente");
 //        }
     }
+
+
+    @Override
+    public ItemTrade saveItemTrade(ItemTrade it) {
+        return tradeRepo.save(it);
+    }
+
+    @Override
+    public Item findItemById(long id) throws EntityNotFoundException {
+        Optional<Item> opItem = itemRepo.findById(id);
+        if(opItem.isEmpty()){
+            throw new EntityNotFoundException(opItem.getClass(), id);
+        }
+        return opItem.get();
+    }
+
 }

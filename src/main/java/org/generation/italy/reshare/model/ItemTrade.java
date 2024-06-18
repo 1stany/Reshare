@@ -34,12 +34,22 @@ public class ItemTrade {
 
     public ItemTrade() {}
 
-    public ItemTrade(long id, LocalDate requestDate, boolean accepted, LocalDate exchangeDate) {
-        this.id = id;
+    public ItemTrade(LocalDate requestDate, boolean accepted, LocalDate exchangeDate) {
         this.requestDate = requestDate;
         this.accepted = accepted;
         this.exchangeDate = exchangeDate;
     }
+
+    public ItemTrade(LocalDate requestDate, boolean accepted, LocalDate exchangeDate, Item requestedItem, AppUser requestingUser, Item exchangedItem, AppUser homeUser) {
+        this.requestDate = requestDate;
+        this.accepted = accepted;
+        this.exchangeDate = exchangeDate;
+        this.requestedItem = requestedItem;
+        this.requestingUser = requestingUser;
+        this.exchangedItem = exchangedItem;
+        this.homeUser = homeUser;
+    }
+
 
     public Item getRequestedItem() {
         return requestedItem;
@@ -71,6 +81,38 @@ public class ItemTrade {
 
     public AppUser getHomeUser() {
         return homeUser;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setRequestDate(LocalDate requestDate) {
+        this.requestDate = requestDate;
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
+    }
+
+    public void setExchangeDate(LocalDate exchangeDate) {
+        this.exchangeDate = exchangeDate;
+    }
+
+    public void setRequestedItem(Item requestedItem) {
+        this.requestedItem = requestedItem;
+    }
+
+    public void setRequestingUser(AppUser requestingUser) {
+        this.requestingUser = requestingUser;
+    }
+
+    public void setExchangedItem(Item exchangedItem) {
+        this.exchangedItem = exchangedItem;
+    }
+
+    public void setHomeUser(AppUser homeUser) {
+        this.homeUser = homeUser;
     }
 
     public LocalDate getRequestDate() {

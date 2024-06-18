@@ -33,14 +33,16 @@ public class Item {
     public Item() {
     }
 
-    public Item(long id, String name, String condition, String description, String conditionComment, boolean activetrade, LocalDate creationDate) {
+    public Item(long id, String name, String condition, String description, String conditionComment, boolean activetrade,Category category, LocalDate creationDate, AppUser owner) {
         this.id = id;
         this.name = name;
         this.condition = condition;
         this.description = description;
         this.conditionComment = conditionComment;
         this.activetrade = activetrade;
+        this.category = category;
         this.creationDate = creationDate;
+        this.owner = owner;
     }
 
     public long getId() {
