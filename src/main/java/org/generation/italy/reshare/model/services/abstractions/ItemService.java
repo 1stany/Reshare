@@ -1,5 +1,6 @@
 package org.generation.italy.reshare.model.services.abstractions;
 
+import org.generation.italy.reshare.exceptions.EntityNotFoundException;
 import org.generation.italy.reshare.model.AppUser;
 import org.generation.italy.reshare.model.Category;
 import org.generation.italy.reshare.model.City;
@@ -11,5 +12,5 @@ public interface ItemService {
     
     City findCityByName(String name);
 
-    AppUser findOwnerByEmail(String ownerEmail);
+    Item findItemById(long id) throws EntityNotFoundException;
 }
