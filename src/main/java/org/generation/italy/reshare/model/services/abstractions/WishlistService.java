@@ -2,6 +2,7 @@ package org.generation.italy.reshare.model.services.abstractions;
 
 import org.generation.italy.reshare.exceptions.EntityNotFoundException;
 import org.generation.italy.reshare.model.AppUser;
+import org.generation.italy.reshare.model.Category;
 import org.generation.italy.reshare.model.ItemType;
 
 import java.util.List;
@@ -18,6 +19,5 @@ public interface WishlistService {
     List<ItemType> getAllItemTypeByCity(long id);
     boolean addItemType(long userId, ItemType itemType) throws EntityNotFoundException;
     List<ItemType> getWishlistByUserId(long id) throws EntityNotFoundException;
-
-
+    Category findCategoryByName(String name);
 }

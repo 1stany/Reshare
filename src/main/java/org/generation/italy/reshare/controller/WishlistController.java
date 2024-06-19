@@ -4,6 +4,7 @@ import org.generation.italy.reshare.dto.ItemDto;
 import org.generation.italy.reshare.dto.ItemTypeDto;
 import org.generation.italy.reshare.exceptions.EntityNotFoundException;
 import org.generation.italy.reshare.model.AppUser;
+import org.generation.italy.reshare.model.Category;
 import org.generation.italy.reshare.model.ItemType;
 import org.generation.italy.reshare.model.UserPrincipal;
 import org.generation.italy.reshare.model.services.abstractions.WishlistService;
@@ -27,15 +28,7 @@ public class WishlistController {
         this.wishlistService = wishlistService;
     }
 
-    @GetMapping("/user/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable long id){
-        try{
-            AppUser user = wishlistService.getUserById(id);
-            return ResponseEntity.ok(user);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
-    }
+
 
     @GetMapping("/user/{userId}/wishlist")
     public ResponseEntity<?> getWishlistByUser(@PathVariable long userId){
@@ -47,9 +40,21 @@ public class WishlistController {
         }
     }
 
+    @GetMapping("/user/my-wishlist")
+    public ResponseEntity<?> getMyWishlist(@AuthenticationPrincipal UserPrincipal principal){
+        try {
+            List<ItemType> wishlist = wishlistService.getWishlistByUserId(principal.getUserId());
+            return ResponseEntity.ok(wishlist.stream().map(ItemTypeDto::new).toList());
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
     @PostMapping("/user/itemType")
-    public ResponseEntity<Boolean> addItemTypeForLoggedUser(@AuthenticationPrincipal UserPrincipal principal, @RequestBody ItemType itemType){
+    public ResponseEntity<Boolean> addItemTypeForLoggedUser(@AuthenticationPrincipal UserPrincipal principal, @RequestBody ItemTypeDto itemTypeDto){
         try{
+            Category category = wishlistService.findCategoryByName(itemTypeDto.getCategoryName());
+            ItemType itemType = itemTypeDto.toItemType(category);
             boolean added = wishlistService.addItemType(principal.getUserId(), itemType);
             return ResponseEntity.ok(added);
         } catch (EntityNotFoundException e) {
@@ -67,17 +72,12 @@ public class WishlistController {
         }
     }
 
-    @DeleteMapping("/user/clearAll")
+    @DeleteMapping("/user/wishlist/clear")
     public ResponseEntity<Boolean> clearWishlist(@AuthenticationPrincipal UserPrincipal principal){
         boolean cleared = wishlistService.clearWishlist(principal.getUserId());
         return ResponseEntity.ok(cleared);
     }
 
-    @GetMapping("/itemtypes")
-    public ResponseEntity<List<ItemType>> getAllItemType(){
-        List<ItemType> itemTypes = wishlistService.getAllItemType();
-        return ResponseEntity.ok(itemTypes);
-    }
 
 
 

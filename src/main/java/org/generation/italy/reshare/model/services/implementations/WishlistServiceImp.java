@@ -2,6 +2,7 @@ package org.generation.italy.reshare.model.services.implementations;
 
 import org.generation.italy.reshare.exceptions.EntityNotFoundException;
 import org.generation.italy.reshare.model.AppUser;
+import org.generation.italy.reshare.model.Category;
 import org.generation.italy.reshare.model.ItemType;
 import org.generation.italy.reshare.model.repositories.abstractions.*;
 import org.generation.italy.reshare.model.services.abstractions.WishlistService;
@@ -14,11 +15,13 @@ import java.util.Optional;
 public class WishlistServiceImp implements WishlistService {
     private AppUserRepository appUserRepo;
     private ItemTypeRepository itemTypeRepo;
+    private CategoryRepository catRepo;
 
 
-    public WishlistServiceImp(AppUserRepository appUserRepo, ItemTypeRepository itemTypeRepo){
+    public WishlistServiceImp(AppUserRepository appUserRepo, ItemTypeRepository itemTypeRepo, CategoryRepository catRepo){
         this.appUserRepo = appUserRepo;
         this.itemTypeRepo = itemTypeRepo;
+        this.catRepo = catRepo;
     }
 
     @Override
@@ -106,5 +109,10 @@ public class WishlistServiceImp implements WishlistService {
         }
         throw new EntityNotFoundException(AppUser.class, id);
 
+    }
+
+    @Override
+    public Category findCategoryByName(String name) {
+        return catRepo.findByName(name);
     }
 }

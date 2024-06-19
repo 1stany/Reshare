@@ -24,11 +24,12 @@ public class ItemType {
 
     public ItemType() {}
 
-    public ItemType(long id, String name, String description, LocalDate dateAdded) {
+    public ItemType(long id, String name, String description, LocalDate dateAdded, Category category) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.dateAdded = dateAdded;
+        this.category = category;
     }
 
     public long getId() {
@@ -53,5 +54,9 @@ public class ItemType {
 
     public void setWishingUser(AppUser wishingUser) {
         this.wishingUser = wishingUser;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 }
