@@ -22,14 +22,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/trade")
 public class TradeController {
     private TradeService tradeService;
+    private AppUserService appUserService;
     private ItemService itemService;
-    private AppUserService userService;
 
     @Autowired
-    public TradeController(TradeService tradeService, ItemService itemService, AppUserService userService) {
+    public TradeController(TradeService tradeService, AppUserService appUserService, ItemService itemService) {
         this.tradeService = tradeService;
+        this.appUserService = appUserService;
         this.itemService = itemService;
-        this.userService = userService;
     }
 
     @PostMapping("/add")
@@ -37,9 +37,10 @@ public class TradeController {
         try {
             Item requestedItem = itemService.findItemById(itemTradeDto.getRequestedItemId());
             Item exchangedItem = itemService.findItemById(itemTradeDto.getExchangedItemId());
-            AppUser requestingUser = userService.getUserById(itemTradeDto.getRequestingUserId());
-            AppUser homeUser = userService.getUserById(itemTradeDto.getHomeUserId());
-
+            AppUser requestingUser = appUserService.getUserByEmail(itemTradeDto.getRequestingUserEmail());
+            AppUser homeUser = appUserService.getUserByEmail(itemTradeDto.getHomeUserEmail());
+            System.out.println(homeUser);
+            System.out.println(requestingUser);
             ItemTrade itemTrade = itemTradeDto.toItemTrade(requestedItem, requestingUser, exchangedItem, homeUser);
             ItemTrade savedItemTrade = tradeService.saveItemTrade(itemTrade);
             ItemTradeDto tradeDto = new ItemTradeDto(savedItemTrade);

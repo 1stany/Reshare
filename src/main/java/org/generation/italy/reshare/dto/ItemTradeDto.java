@@ -17,9 +17,9 @@ public class ItemTradeDto {
     private String exchangedItemName;
     private String homeUserFullName;
     private long requestedItemId;
-    private long requestingUserId;
+    private String requestingUserEmail;
     private long exchangedItemId;
-    private long homeUserId;
+    private String homeUserEmail;
 
     public ItemTradeDto(ItemTrade it) {
         this.id = it.getId();
@@ -31,9 +31,9 @@ public class ItemTradeDto {
         this.exchangedItemName = it.getExchangedItem().getName();
         this.homeUserFullName = it.getHomeUser().getFullName();
         this.requestedItemId = it.getRequestedItem().getId();
-        this.requestingUserId = it.getRequestingUser().getId();
+        this.requestingUserEmail = it.getRequestingUser().getEmail();
         this.exchangedItemId = it.getExchangedItem().getId();
-        this.homeUserId = it.getHomeUser().getId();
+        this.homeUserEmail = it.getHomeUser().getEmail();
     }
 
     public String getRequestedItemName() {
@@ -90,13 +90,6 @@ public class ItemTradeDto {
         this.requestedItemId = requestedItemId;
     }
 
-    public long getRequestingUserId() {
-        return requestingUserId;
-    }
-
-    public void setRequestingUserId(long requestingUserId) {
-        this.requestingUserId = requestingUserId;
-    }
 
     public long getExchangedItemId() {
         return exchangedItemId;
@@ -104,14 +97,6 @@ public class ItemTradeDto {
 
     public void setExchangedItemId(long exchangedItemId) {
         this.exchangedItemId = exchangedItemId;
-    }
-
-    public long getHomeUserId() {
-        return homeUserId;
-    }
-
-    public void setHomeUserId(long homeUserId) {
-        this.homeUserId = homeUserId;
     }
 
     public void setId(long id) {
@@ -128,6 +113,22 @@ public class ItemTradeDto {
 
     public void setExchangeDate(String exchangeDate) {
         this.exchangeDate = exchangeDate;
+    }
+
+    public String getRequestingUserEmail() {
+        return requestingUserEmail;
+    }
+
+    public void setRequestingUserEmail(String requestingUserEmail) {
+        this.requestingUserEmail = requestingUserEmail;
+    }
+
+    public String getHomeUserEmail() {
+        return homeUserEmail;
+    }
+
+    public void setHomeUserEmail(String homeUserEmail) {
+        this.homeUserEmail = homeUserEmail;
     }
 
     public String getExchangeDate() {
