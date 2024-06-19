@@ -29,7 +29,7 @@ public class AppUser {
     public AppUser() {
     }
 
-    public AppUser(String firstname, String lastname, String email, String phone, String gender, LocalDate birthdate, String description) {
+    public AppUser(String firstname, String lastname, String email, String phone, String gender, LocalDate birthdate, String description, City city) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -37,9 +37,10 @@ public class AppUser {
         this.gender = gender;
         this.birthdate = birthdate;
         this.description = description;
+        this.city = city;
     }
 
-    public AppUser(String firstname, String lastname, String email, String phone, String gender, LocalDate birthdate, String description, String password) {
+    public AppUser(String firstname, String lastname, String email, String phone, String gender, LocalDate birthdate, String description, City city, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -47,6 +48,7 @@ public class AppUser {
         this.gender = gender;
         this.birthdate = birthdate;
         this.description = description;
+        this.city = city;
         this.password = password;
     }
 
@@ -106,4 +108,5 @@ public class AppUser {
     public String getFullName() {
         return firstname + " " + lastname;
     }
+
 }

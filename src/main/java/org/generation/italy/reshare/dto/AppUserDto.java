@@ -1,6 +1,7 @@
 package org.generation.italy.reshare.dto;
 
 import org.generation.italy.reshare.model.AppUser;
+import org.generation.italy.reshare.model.City;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,6 +16,7 @@ public class AppUserDto {
     private String gender;
     private String birthdate;
     private String description;
+    private String cityName;
 
     public AppUserDto() {}
 
@@ -27,6 +29,7 @@ public class AppUserDto {
         this.gender = appUser.getGender();
         this.birthdate = appUser.getBirthdate().format(DateTimeFormatter.ofPattern("d-MMM-uuuu"));
         this.description = appUser.getDescription();
+        this.cityName = appUser.getCity().getName();
     }
 
     public long getId() {
@@ -35,6 +38,46 @@ public class AppUserDto {
 
     public String getFirstname() {
         return firstname;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     public String getLastname() {
@@ -61,7 +104,7 @@ public class AppUserDto {
         return description;
     }
 
-    public AppUser toAppUser(){
-        return new AppUser(this.firstname, this.lastname, this.email, this.phone, this.gender, LocalDate.parse(this.birthdate, DateTimeFormatter.ofPattern("uuuu-MM-dd")), this.description);
+    public AppUser toAppUser(City city){
+        return new AppUser(this.firstname, this.lastname, this.email, this.phone, this.gender, LocalDate.parse(this.birthdate, DateTimeFormatter.ofPattern("uuuu-MM-dd")), this.description, city);
     }
 }

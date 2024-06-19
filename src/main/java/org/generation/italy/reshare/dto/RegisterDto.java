@@ -1,6 +1,7 @@
 package org.generation.italy.reshare.dto;
 
 import org.generation.italy.reshare.model.AppUser;
+import org.generation.italy.reshare.model.City;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -14,12 +15,20 @@ public class RegisterDto {
         this.password = password;
     }
 
-    public AppUser toAppUser(){
-        return new AppUser(user.getFirstname(), user.getLastname(), user.getEmail(), user.getPhone(), user.getGender(), LocalDate.parse(user.getBirthdate(), DateTimeFormatter.ofPattern("uuuu-MM-dd")), user.getDescription(), password);
+    public AppUser toAppUser(City city){
+        return new AppUser(user.getFirstname(), user.getLastname(), user.getEmail(), user.getPhone(), user.getGender(), LocalDate.parse(user.getBirthdate(), DateTimeFormatter.ofPattern("uuuu-MM-dd")), user.getDescription(), city, password);
     }
 
     public AppUserDto getUser(){
         return this.user;
+    }
+
+    public void setUser(AppUserDto user) {
+        this.user = user;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPassword() {

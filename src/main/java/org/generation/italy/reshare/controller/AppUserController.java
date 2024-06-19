@@ -3,6 +3,7 @@ package org.generation.italy.reshare.controller;
 import org.generation.italy.reshare.dto.*;
 import org.generation.italy.reshare.exceptions.EntityNotFoundException;
 import org.generation.italy.reshare.model.AppUser;
+import org.generation.italy.reshare.model.City;
 import org.generation.italy.reshare.model.Item;
 import org.generation.italy.reshare.model.UserPrincipal;
 import org.generation.italy.reshare.model.services.abstractions.AppUserService;
@@ -36,7 +37,8 @@ public class AppUserController {
 
     @PostMapping("/register")
     public RegisterDto register(@RequestBody RegisterDto registerUser) {
-        AppUser user = registerUser.toAppUser();
+        City city = appUserService.getCityByName(registerUser.getUser().getCityName());
+        AppUser user = registerUser.toAppUser(city);
         AppUser savedUser = appUserService.saveUser(user);
         AppUserDto userDto = new AppUserDto(savedUser);
         return new RegisterDto(userDto, user.getPassword());
