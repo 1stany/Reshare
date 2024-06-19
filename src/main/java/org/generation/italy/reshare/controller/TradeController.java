@@ -31,8 +31,8 @@ public class TradeController {
         try {
             Item requestedItem = tradeService.findItemById(itemTradeDto.getRequestedItemId());
             Item exchangedItem = tradeService.findItemById(itemTradeDto.getExchangedItemId());
-            AppUser requestingUser = tradeService.getUserById(itemTradeDto.getRequestingUserId());
-            AppUser homeUser = tradeService.getUserById(itemTradeDto.getHomeUserId());
+            AppUser requestingUser = tradeService.getUserByEmail(itemTradeDto.getRequestingUserEmail());
+            AppUser homeUser = tradeService.getUserByEmail(itemTradeDto.getHomeUserEmail());
 
             ItemTrade itemTrade = itemTradeDto.toItemTrade(requestedItem, requestingUser, exchangedItem, homeUser);
             ItemTrade savedItemTrade = tradeService.saveItemTrade(itemTrade);
